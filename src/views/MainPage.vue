@@ -30,10 +30,6 @@
     filter: brightness(80%)
 }
 
-.content:hover span{
-    color: rgba(0, 0, 0, 0.5);
-}
-
 .mid {
     width: 460px;
     height: 700px;
