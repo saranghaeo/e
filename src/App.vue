@@ -13,27 +13,36 @@
       <router-link class="logo-link" to="/">Exec</router-link>
     </nav>
 
-    <nav class="navigation end">
-      <router-link class="nav-link" to="/">Войти</router-link>
-      <router-link class="nav-link" to="/">Регистрация</router-link>
-    </nav>
+    <form action="https://steamcommunity.com/openid/login" method="post">
+      <input type="hidden" name="openid.identity" value="http://specs.openid.net/auth/2.0/identifier_select" />
+      <input type="hidden" name="openid.claimed_id" value="http://specs.openid.net/auth/2.0/identifier_select" />
+      <input type="hidden" name="openid.ns" value="http://specs.openid.net/auth/2.0" />
+      <input type="hidden" name="openid.mode" value="checkid_setup" />
+      <input type="hidden" name="openid.realm" value="https:\\yourOpenIdRealm.com" />
+      <input type="hidden" name="openid.return_to" value="https:\\YourDomainUrlToReturnTo.com" />
+      <Button type="submit" class="sign-steam">Log in through Steam</Button>
+    </form>
 
   </header>
 
-  <router-view></router-view>
+  <router-view v-slot="{ Component }">
+    <transition name="route" mode="out-in">
+      <component :is="Component"></component>
+    </transition>
+  </router-view>
 
   <footer>
 
-    <div class="container">
+    <div class="container-footer">
 
       <h1 class="logo-footer">Exec</h1>
 
-      <div class="content">
+      <div class="content-footer">
 
         <div class="navigation-footer">
           <p class="title-link">Настройки</p>
           <nav class="nav-footer">
-            <router-link class="link-footer" to="/">Игроки</router-link>
+            <router-link class="link-footer" to="/players">Игроки</router-link>
             <router-link class="link-footer" to="/">Генератор прицела</router-link>
           </nav>
         </div>
@@ -90,6 +99,8 @@
 
 body {
   background: #000000;
+  margin: 0;
+  padding: 0;
 }
 
 .header {
@@ -122,6 +133,12 @@ body {
   text-decoration: none;
 }
 
+.sign-steam {
+  color: #fff;
+  background: none;
+  font-size: 16px;
+}
+
 nav a {
   font-weight: 400;
   margin: 0 20px;
@@ -137,18 +154,18 @@ footer {
   font-size: 48px;
 }
 
-.container {
+.container-footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 30px 50px;
 }
 
-.content {
+.content-footer {
   display: flex;
 }
 
-.navigation-footer{
+.navigation-footer {
   text-align: center;
 }
 
