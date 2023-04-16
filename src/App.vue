@@ -2,7 +2,7 @@
   <header class="header">
 
     <nav class="navigation start">
-      <router-link class="nav-link" to="/">Игроки</router-link>
+      <router-link class="nav-link" to="/players">Игроки</router-link>
       <router-link class="nav-link" to="/">Тренировки</router-link>
       <router-link class="nav-link" to="/">Генератор</router-link>
       <router-link class="nav-link" to="/">Новости</router-link>
@@ -23,7 +23,6 @@
   <router-view></router-view>
 
   <footer>
-
 
     <div class="container">
 
@@ -177,7 +176,8 @@ footer {
 
 .copyright {
   font-size: 15px;
-  font-weight: 600px;
+  font-weight: 500px;
   text-align: center;
+  padding-right: 30px;
 }
 </style>
