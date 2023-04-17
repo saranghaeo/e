@@ -23,6 +23,16 @@ const router = createRouter({
       name: 'guides',
       component: () => import('../views/GuidesPage.vue')
     },
+    {
+      path: '/login',
+      name: 'login',
+      component: () => import('../components/SteamLoginButton.vue')
+    },
+    {
+      path: '/callback',
+      name: 'callback',
+      component: () => import('../components/SteamCallback.vue')
+    },
   ]
 })
 

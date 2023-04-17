@@ -13,15 +13,8 @@
       <router-link class="logo-link" to="/">Exec</router-link>
     </nav>
 
-    <form action="https://steamcommunity.com/openid/login" method="post">
-      <input type="hidden" name="openid.identity" value="http://specs.openid.net/auth/2.0/identifier_select" />
-      <input type="hidden" name="openid.claimed_id" value="http://specs.openid.net/auth/2.0/identifier_select" />
-      <input type="hidden" name="openid.ns" value="http://specs.openid.net/auth/2.0" />
-      <input type="hidden" name="openid.mode" value="checkid_setup" />
-      <input type="hidden" name="openid.realm" value="https:\\yourOpenIdRealm.com" />
-      <input type="hidden" name="openid.return_to" value="https:\\YourDomainUrlToReturnTo.com" />
-      <Button type="submit" class="sign-steam">Log in through Steam</Button>
-    </form>
+    <SteamLoginButton/>
+    <Button type="submit" class="sign-steam">Log in through Steam</Button>
 
   </header>
 
@@ -77,6 +70,10 @@
 
   </footer>
 </template>
+
+<script setup>
+import SteamLoginButton from './components/SteamLoginButton.vue';
+</script>
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
