@@ -1,4 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import Login from '@/components/Login.vue';
+import UserProfile from '@/components/UserProfile.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -23,7 +25,18 @@ const router = createRouter({
       name: 'guides',
       component: () => import('../views/GuidesPage.vue')
     },
+    { path: '/', redirect: '/user' },
+    { path: '/login', component: Login },
+    { path: '/user', component: UserProfile, meta: { requiresAuth: true } }
   ]
-})
+});
 
-export default router
+router.beforeEach((to, from, next) => {
+  if (to.meta.requiresAuth && !window.user) {
+    next('/login');
+  } else {
+    next();
+  }
+});
+
+export default router;
