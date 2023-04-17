@@ -1,13 +1,13 @@
 <template>
     <div class="content">
-        <h1 class="title">Новости</h1>
+        <h1 class="title">Гайды</h1>
         <div class="container">
-            <NewsCard v-for="n in 3"/>
+            <GuideCard></GuideCard>
         </div>
     </div>
 </template>
 <script setup>
-import NewsCard from "@/components/NewsCard.vue"
+import GuideCard from "@/components/GuideCard.vue"
 </script>
 <style scoped>
 .content {
@@ -17,10 +17,5 @@ import NewsCard from "@/components/NewsCard.vue"
 .title {
     font-size: 40px;
     padding-bottom: 60px;
-}
-.container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 }
 </style>

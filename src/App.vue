@@ -6,7 +6,7 @@
       <router-link class="nav-link" to="/">Тренировки</router-link>
       <router-link class="nav-link" to="/">Генератор</router-link>
       <router-link class="nav-link" to="/news">Новости</router-link>
-      <router-link class="nav-link" to="/">Гайды</router-link>
+      <router-link class="nav-link" to="/guides">Гайды</router-link>
     </nav>
 
     <nav class="logo">
@@ -137,6 +137,7 @@ body {
   color: #fff;
   background: none;
   font-size: 16px;
+  margin-right: 20px;
 }
 
 nav a {

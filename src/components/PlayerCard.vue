@@ -41,7 +41,7 @@ export default {
     display: flex;
     width: 490px;
     height: 220px;
-    margin-bottom: 60px;
+    margin: 0 50px 60px 0;
     text-decoration: none;
     color: #fff;
 }
