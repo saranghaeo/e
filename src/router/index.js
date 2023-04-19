@@ -23,6 +23,11 @@ const router = createRouter({
       name: 'guides',
       component: () => import('../views/GuidesPage.vue')
     },
+    {
+      path: '/login',
+      name: 'login',
+      component: () => import('../views/SteamAuth.vue')
+    },
   ]
 })
 
