@@ -13,15 +13,14 @@
       <router-link class="logo-link" to="/">Exec</router-link>
     </nav>
 
-    <form action="https://steamcommunity.com/openid/login" method="post">
-      <input type="hidden" name="openid.identity" value="http://specs.openid.net/auth/2.0/identifier_select" />
-      <input type="hidden" name="openid.claimed_id" value="http://specs.openid.net/auth/2.0/identifier_select" />
-      <input type="hidden" name="openid.ns" value="http://specs.openid.net/auth/2.0" />
-      <input type="hidden" name="openid.mode" value="checkid_setup" />
-      <input type="hidden" name="openid.realm" value="https:\\yourOpenIdRealm.com" />
-      <input type="hidden" name="openid.return_to" value="https:\\YourDomainUrlToReturnTo.com" />
-      <Button type="submit" class="sign-steam">Log in through Steam</Button>
-    </form>
+    <div v-if="Authstore.user">
+      <img :src="Authstore.user.avatarfull" :alt="Authstore.user.personaname">
+      <h2>{{ Authstore.user.personaname }}</h2>
+      <button @click="Authstore.logout()">Logout</button>
+    </div>
+    <div v-else>
+      <button @click="Authstore.login()">Login with Steam</button>
+    </div>
 
   </header>
 
@@ -78,6 +77,11 @@
   </footer>
 </template>
 
+<script setup>
+import { useAuthStore } from '@/store/auth.js';
+
+const Authstore = useAuthStore();
+</script>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
 
