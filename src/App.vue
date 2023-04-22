@@ -13,11 +13,16 @@
       <router-link class="logo-link" to="/">Exec</router-link>
     </nav>
 
-    <div v-if="Authstore.user">
+    <div v-if="Authstore.user" class="user-auth">
       <img :src="Authstore.user.avatarfull" :alt="Authstore.user.personaname">
-      <h2>{{ Authstore.user.personaname }}</h2>
-      <button @click="Authstore.logout()">Logout</button>
+
+      <div class="logout_nickname">
+        <h3 class="nickname-auth">{{ Authstore.user.personaname }}</h3>
+        <button @click="Authstore.logout()" class="logout-btn">Выйти</button>
+      </div>
+
     </div>
+
     <div v-else>
       <button @click="Authstore.login()" class="sign-steam">Login with Steam</button>
     </div>
@@ -148,6 +153,35 @@ body {
 
 .sign-steam:hover {
   text-decoration: underline;
+}
+
+.user-auth {
+  display: flex;
+  align-items: center;
+}
+
+.user-auth img {
+  width: 40px;
+  height: 40px;
+  border-radius: 999999px;
+}
+
+.nickname-auth {
+  font-size: 16px;
+  font-weight: 500;
+  padding: 0 10px;
+}
+
+.logout_nickname {
+  display: flex;
+  flex-direction: column;
+}
+
+.logout-btn {
+  border: none;
+  background: none;
+  color: #b2b2b2;
+  font-family: 'Montserrat', sans-serif;
 }
 
 nav a {
