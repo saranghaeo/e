@@ -14,7 +14,7 @@
     </nav>
 
     <div v-if="Authstore.user" class="user-auth">
-      <img :src="Authstore.user.avatarfull" :alt="Authstore.user.personaname">
+      <img :src="Authstore.user.avatarfull" :alt="Authstore.user.avatarfull">
 
       <div class="logout_nickname">
         <h3 class="nickname-auth">{{ Authstore.user.personaname }}</h3>
