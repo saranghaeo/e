@@ -28,6 +28,16 @@ const router = createRouter({
       name: 'auth-steam',
       component: () => import('../views/AuthSteam.vue')
     },
+    {
+      path: '/training',
+      name: 'training',
+      component: () => import('../views/TrainingPage.vue')
+    },
+    {
+      path: '/human',
+      name: 'human',
+      component: () => import('../views/HumanBench.vue')
+    },
   ]
 })
 
