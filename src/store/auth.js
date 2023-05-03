@@ -1,5 +1,8 @@
-import {defineStore} from 'pinia'
+import { defineStore } from 'pinia'
 import axios from 'axios'
+import { createClient } from '@supabase/supabase-js'
+
+const supabase = createClient('https://pidnrnvitkiyqsmequnz.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBpZG5ybnZpdGtpeXFzbWVxdW56Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODMwMTQxNDksImV4cCI6MTk5ODU5MDE0OX0.zRLyXkGzAXFAjS-Pi0Nj8AX5BWKsBjbXxgwm0hEvQps')
 
 export const useAuthStore = defineStore('auth', {
   state: () => ({
@@ -17,12 +20,12 @@ export const useAuthStore = defineStore('auth', {
 
       // Redirect the user to the Steam login page
       window.location.href = `https://steamcommunity.com/openid/login?` +
-          `openid.claimed_id=http://specs.openid.net/auth/2.0/identifier_select&` +
-          `openid.identity=http://specs.openid.net/auth/2.0/identifier_select&` +
-          `openid.mode=checkid_setup&` +
-          `openid.ns=http://specs.openid.net/auth/2.0&` +
-          `openid.realm=${window.location.origin}&` +
-          `openid.return_to=${encodeURIComponent(returnUrl)}`
+        `openid.claimed_id=http://specs.openid.net/auth/2.0/identifier_select&` +
+        `openid.identity=http://specs.openid.net/auth/2.0/identifier_select&` +
+        `openid.mode=checkid_setup&` +
+        `openid.ns=http://specs.openid.net/auth/2.0&` +
+        `openid.realm=${window.location.origin}&` +
+        `openid.return_to=${encodeURIComponent(returnUrl)}`
     },
 
     async handleLoginCallback() {
@@ -75,11 +78,31 @@ export const useAuthStore = defineStore('auth', {
 
       // Store the user object in state
       this.user = user
+
+      await this.saveUserDataToSupabase(user)
     },
 
     logout() {
       // Clear the user object from state
       this.user = null
+    },
+    async saveUserDataToSupabase(user) {
+      const { data, error } = await supabase
+        .from('users')
+        .insert([
+          {
+            steamid: user.steamid,
+            personaname: user.personaname,
+            profileurl: user.profileurl,
+            avatarfull: user.avatarfull
+          }
+        ])
+
+      if (error) {
+        console.error(error)
+      } else {
+        console.log(data)
+      }
     }
   }
 })
