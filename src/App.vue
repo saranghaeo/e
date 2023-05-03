@@ -78,7 +78,7 @@
     </div>
 
     <p class="copyright">Copyright© 2023</p>
-
+    
   </footer>
 </template>
 

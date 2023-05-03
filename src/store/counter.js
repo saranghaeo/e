@@ -10,3 +10,23 @@ export const useCounterStore = defineStore('counter', () => {
 
   return { count, doubleCount, increment }
 })
+
+
+export const useMyStore = defineStore({
+  id: 'user',
+  state: () => ({
+    data: null
+  }),
+  actions: {
+    async sendDataToSupabase(payload) {
+      const { data, error } = await supabase.from('users').insert(payload)
+      
+      if (error) {
+        console.error(error)
+        return
+      }
+      
+      console.log(data)
+    }
+  }
+})
