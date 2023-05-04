@@ -1,19 +1,19 @@
 <template>
 
-    <router-link to="" class="card">
+    <router-link to="" class="card" v-for="user in users" :key="user.id">
 
         <div class="avatar">
-            <img src="@/assets/img/player/9eXMjrySi4Y.jpg" alt="avatar">
+            <img :src="user.avatarfull" :alt="user.avatarfull">
         </div>
 
         <div class="text-block">
-            <h3 class="nickname">Nickname</h3>
+            <h3 class="nickname">{{ user.personaname }}</h3>
             <router-link to="" class="download-cfg">config</router-link>
 
             <div class="social">
-                <router-link to="" class="img-link-social">
+                <a :href="user.profileurl" class="img-link-social">
                     <img src="@/assets/img/player/steam.png" alt="social">
-                </router-link>
+                </a>
                 <router-link to="" class="img-link-social">
                     <img src="@/assets/img/player/twitch.png" alt="social">
                 </router-link>
@@ -32,8 +32,37 @@
 
 </template>
 <script>
-export default {
+import { ref, onMounted } from 'vue'
+import { createClient } from '@supabase/supabase-js'
 
+export default {
+  setup() {
+    const supabaseUrl = 'https://pidnrnvitkiyqsmequnz.supabase.co'
+    const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBpZG5ybnZpdGtpeXFzbWVxdW56Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODMwMTQxNDksImV4cCI6MTk5ODU5MDE0OX0.zRLyXkGzAXFAjS-Pi0Nj8AX5BWKsBjbXxgwm0hEvQps'
+    const supabase = createClient(supabaseUrl, supabaseAnonKey)
+
+    const users = ref([])
+
+    const loadUsers = async () => {
+      const { data, error } = await supabase
+        .from('users')
+        .select('id, steam_id, personaname, avatarfull, profileurl')
+
+      if (error) {
+        console.error(error)
+      } else {
+        users.value = data
+      }
+    }
+
+    onMounted(() => {
+      loadUsers()
+    })
+
+    return {
+      users
+    }
+  }
 }
 </script>
 <style scoped>
