@@ -78,7 +78,7 @@
     </div>
 
     <p class="copyright">Copyright© 2023</p>
-    
+
   </footer>
 </template>
 
@@ -164,12 +164,14 @@ body {
   width: 40px;
   height: 40px;
   border-radius: 999999px;
+  margin-right: 8px;
 }
 
 .nickname-auth {
   font-size: 16px;
   font-weight: 500;
   padding: 0 10px;
+  margin-bottom: 5px;
 }
 
 .logout_nickname {
@@ -182,6 +184,10 @@ body {
   background: none;
   color: #b2b2b2;
   font-family: 'Montserrat', sans-serif;
+  transition: 0.1s;
+}
+.logout-btn:hover {
+  color: #fff;
 }
 
 nav a {

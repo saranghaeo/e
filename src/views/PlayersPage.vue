@@ -2,7 +2,7 @@
     <div class="content">
         <h1 class="title">Игроки</h1>
         <div class="container">
-            <PlayerCard v-for="n in 3"/>
+            <PlayerCard/>
         </div>
     </div>
 </template>

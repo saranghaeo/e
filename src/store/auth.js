@@ -91,7 +91,7 @@ export const useAuthStore = defineStore('auth', {
         .from('users')
         .insert([
           {
-            steamid: user.steamid,
+            steam_id: user.steamid,
             personaname: user.personaname,
             profileurl: user.profileurl,
             avatarfull: user.avatarfull
