@@ -77,6 +77,7 @@ export const useAuthStore = defineStore('auth', {
       console.log(user)
 
       // Store the user object in state
+      user.profileurl = 'https://steamcommunity.com/profiles/' + user.steamid
       this.user = user
 
       await this.saveUserDataToSupabase(user)

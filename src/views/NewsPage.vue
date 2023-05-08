@@ -7,7 +7,7 @@
     </div>
 </template>
 <script setup>
-import NewsCard from "@/components/NewsCard.vue"
+import NewsCard from "@/components/news/NewsCard.vue"
 </script>
 <style scoped>
 .content {

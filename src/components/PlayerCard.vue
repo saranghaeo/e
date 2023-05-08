@@ -1,6 +1,6 @@
 <template>
 
-    <router-link to="" class="card" v-for="user in users" :key="user.id">
+    <router-link :to="{ name: 'player', params: { steam_id: user.steam_id } }" class="card" v-for="user in users" :key="user.id">
 
         <div class="avatar">
             <img :src="user.avatarfull" :alt="user.avatarfull">

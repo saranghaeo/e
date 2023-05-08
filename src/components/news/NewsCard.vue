@@ -1,5 +1,5 @@
 <template>
-    <router-link to="" class="card">
+    <div class="card">
         <div class="image-news">
             <img src="@/assets/img/news/cs2.jpg" alt="preview">
         </div>
@@ -8,9 +8,9 @@
             <p class="text">It has been rumored to happen for years, but recent rumors have proven to be correct as Valve has officially announced Counter-Strike 2 
             on their blog. Counter-Strike 2 will introduce a number of massive updates to the game and is set for a full release in the summer, with limited testing rolling 
             out as of today. CS2 will be a free update to CS:GO and will introduce a number of improvements, some of which have already been outlined by Valve.</p>
-            <router-link to="" class="more">Узнать Больше</router-link>
+            <router-link to="/cs2" class="more">Узнать Больше</router-link>
         </div>
-    </router-link>
+    </div>
 </template>
 <script>
 export default {
@@ -44,6 +44,7 @@ export default {
     .text {
         font-size: 16px;
         line-height: 20px;
+        padding: 10px 15px 5px 15px;
     }
     .more {
         font-size: 20px;

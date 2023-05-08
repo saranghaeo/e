@@ -14,9 +14,20 @@ const router = createRouter({
       component: () => import('../views/PlayersPage.vue')
     },
     {
+      path: '/players/:steam_id',
+      name: 'player',
+      props: true,
+      component: () => import('../views/PlayerProfile.vue')
+    },
+    {
       path: '/news',
       name: 'news',
       component: () => import('../views/NewsPage.vue')
+    },
+    {
+      path: '/cs2',
+      name: 'cs2',
+      component: () => import('../views/News.vue')
     },
     {
       path: '/guides',

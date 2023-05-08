@@ -1,21 +1,51 @@
 <template>
-    <div class="block" v-if="Authstore.user">
-        <div class="avatar">
-            <img :src="Authstore.user.avatarfull" :alt="Authstore.user.avatarfull">
-        </div>
-        <div class="text-block">
-            <h2 class="nickname">{{ Authstore.user.personaname }}</h2>
-            <div class="text">
-                <div class="team">
-                    <label class="l-title">Команда: </label>
-                    <label>Нет</label>
-                </div>
-                <div class="about">
-                    <label class="l-title">О Себе: </label>
-                    <textarea placeholder="Описание ещё не добавлено" class="placeholder"></textarea>
-                </div>
-                <div class="cfg">
-                    <p class="config">cfg.cfg</p>
+    <div class="content">
+        <div class="block" v-if="Authstore.user">
+            <div class="avatar">
+                <img :src="Authstore.user.avatarfull" :alt="Authstore.user.avatarfull">
+            </div>
+
+            <div class="profile-block">
+                <h2 class="nickname">{{ Authstore.user.personaname }}</h2>
+                <div class="inner-block">
+
+                    <div class="left-block">
+                        <div class="team">
+                            <p><b>Команда:</b></p>
+                            <p class="name-of-team">none</p>
+                        </div>
+                        <div class="about">
+                            <pre>none</pre>
+                        </div>
+                    </div>
+
+                    <div class="right-block">
+                        <div class="download-cfg">
+                            <router-link to="" class="cfg">
+                                <p>Config.cfg</p>
+                            </router-link>
+                            <router-link to="" class="cfg">
+                                <p>Autoexec.cfg</p>
+                            </router-link>
+                        </div>
+
+                        <div class="social">
+                            <a :href="Authstore.user.profileurl" class="social-icon">
+                                <img src="@/assets/img/player/steam.png" alt="social">
+                            </a>
+                            <a href="" class="social-icon">
+                                <img src="@/assets/img/player/twitch.png" alt="social">
+                            </a>
+                            <a href="" class="social-icon">
+                                <img src="@/assets/img/player/youtube.png" alt="social">
+                            </a>
+                            <a href="" class="social-icon">
+                                <img src="@/assets/img/player/vkontakte.png" alt="social">
+                            </a>
+                        </div>
+                    </div>
+
+
                 </div>
             </div>
         </div>
@@ -27,6 +57,13 @@ import { useAuthStore } from '@/store/auth.js';
 const Authstore = useAuthStore();
 </script>
 <style scoped>
+.content {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
 .block {
     width: 1100px;
     height: 220px;
@@ -39,11 +76,7 @@ const Authstore = useAuthStore();
     border-radius: 10px 0px 0px 10px;
 }
 
-.text-block {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
+.profile-block {
     width: 100%;
     background: #000000;
     box-shadow: inset 5px 5px 35px rgba(255, 255, 255, 0.4);
@@ -51,53 +84,66 @@ const Authstore = useAuthStore();
 }
 
 .nickname {
+    text-align: center;
     font-size: 28px;
     padding: 10px;
     width: 90%;
     border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+    margin: 0 auto;
 }
 
-.text {
+.inner-block {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 30px;
+}
+
+.team {
+    display: flex;
+}
+
+.name-of-team {
+    padding-left: 8px;
+}
+
+.right-block {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    padding: 5px 5px;
-    width: 90%;
+    align-items: center;
 }
 
-.team,
-.about {
-    padding-top: 10px;
-}
-
-.t-title {
-    font-weight: 600;
-}
-
-.about {
-    display: flex;
-    align-items: flex-start;
+.download-cfg {
     flex-direction: column;
-}
-
-.placeholder {
-    padding-top: 30px;
-    margin-top: 5px;
-    text-align: center;
-    width: 440px;
-    height: 80px;
-    color: #fff;
-    background: rgba(255, 255, 255, 0.1);
-}
-
-textarea {
-  resize: none;
-  font-size: 14px;
-  font-family: 'Montserrat';
+    align-items: self-start;
 }
 
 .cfg {
     display: flex;
-    align-items: flex-end;
+    padding-bottom: 8px;
+    font-weight: 700;
+    text-decoration: none;
+    color: #c3f5f1;
+}
+
+.social {
+    padding-top: 20px;
+}
+
+.social-icon {
+    margin-right: 8px;
+}
+.about {
+    padding-top: 10px;
+}
+pre {
+    background-color: #181818;
+    width: 450px;
+    height: 90px;
+    border-radius: 10px;
+    font-size: 14px;
+    color: #666666;
+    padding: 12px 15px;
+    font-family: 'Montserrat', sans-serif;
+    white-space: break-spaces;
 }
 </style>
