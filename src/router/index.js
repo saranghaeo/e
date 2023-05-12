@@ -20,19 +20,19 @@ const router = createRouter({
       component: () => import('../views/PlayerProfile.vue')
     },
     {
-      path: '/news',
-      name: 'news',
-      component: () => import('../views/NewsPage.vue')
+      path: '/blog',
+      name: 'blog',
+      component: () => import('../views/BlogPage.vue')
     },
     {
       path: '/cs2',
       name: 'cs2',
-      component: () => import('../views/News.vue')
+      component: () => import('../views/Blogs/cs2.vue')
     },
     {
-      path: '/guides',
-      name: 'guides',
-      component: () => import('../views/GuidesPage.vue')
+      path: '/gsync',
+      name: 'gsync',
+      component: () => import('../views/Blogs/gsync.vue')
     },
     {
       path: '/auth/steam',

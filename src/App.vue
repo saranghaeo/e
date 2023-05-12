@@ -5,8 +5,7 @@
       <router-link class="nav-link" to="/players">Игроки</router-link>
       <router-link class="nav-link" to="/Training">Тренировки</router-link>
       <router-link class="nav-link" to="/">Генератор</router-link>
-      <router-link class="nav-link" to="/news">Новости</router-link>
-      <router-link class="nav-link" to="/guides">Гайды</router-link>
+      <router-link class="nav-link" to="/blog">Блог</router-link>
     </nav>
 
     <nav class="logo">

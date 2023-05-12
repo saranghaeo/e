@@ -96,7 +96,7 @@ export const useAuthStore = defineStore('auth', {
             personaname: user.personaname,
             profileurl: user.profileurl,
             avatarfull: user.avatarfull
-          }
+          } 
         ])
 
       if (error) {

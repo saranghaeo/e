@@ -1,13 +1,15 @@
 <template>
     <div class="content">
-        <h1 class="title">Новости</h1>
+        <h1 class="title">Блог</h1>
         <div class="container">
-            <NewsCard v-for="n in 3"/>
+            <CS2/>
+            <gsync/>
         </div>
     </div>
 </template>
 <script setup>
-import NewsCard from "@/components/news/NewsCard.vue"
+import CS2 from "@/components/blog/cs2/BlogCard.vue"
+import gsync from "@/components/blog/gsync/BlogCard.vue"
 </script>
 <style scoped>
 .content {

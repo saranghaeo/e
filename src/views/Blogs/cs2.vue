@@ -5,8 +5,8 @@
     </div>
 </template>
 <script setup>
-import EntryComp from "@/components/news/EntryComp.vue"
-import BlockComp from "@/components/news/BlockComp.vue"
+import EntryComp from "@/components/blog/cs2/EntryComp.vue"
+import BlockComp from "@/components/blog/cs2/BlockComp.vue"
 </script>
 <style scoped>
 .content {
