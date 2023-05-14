@@ -1,6 +1,5 @@
 <template>
     <div>
-        <ProfileBanner/>
     </div>
 </template>
 <script>

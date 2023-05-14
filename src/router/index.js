@@ -15,7 +15,7 @@ const router = createRouter({
     },
     {
       path: '/players/:steam_id',
-      name: 'player',
+      name: 'profile',
       props: true,
       component: () => import('../views/PlayerProfile.vue')
     },

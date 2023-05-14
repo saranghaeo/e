@@ -16,7 +16,7 @@ export const useAuthStore = defineStore('auth', {
        * I think, this could be moved to / or /profile,
        * I see no reason to use auth/steam
        */
-      const returnUrl = window.location.origin + '/auth/steam'
+      const returnUrl = window.location.origin + '/players/'
 
       // Redirect the user to the Steam login page
       window.location.href = `https://steamcommunity.com/openid/login?` +

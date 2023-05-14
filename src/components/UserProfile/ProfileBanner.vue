@@ -1,12 +1,18 @@
 <template>
     <div class="content">
-        <div class="block" v-if="Authstore.user">
+        <div class="block">
             <div class="avatar">
-                <img :src="Authstore.user.avatarfull" :alt="Authstore.user.avatarfull">
+                <img :src="player.avatarfull" :alt="player.personaname">
             </div>
 
             <div class="profile-block">
-                <h2 class="nickname">{{ Authstore.user.personaname }}</h2>
+                <div class="top-bar">
+                    <h2 class="nickname">{{ player.personaname }}</h2>
+                    <div class="edit-img">
+                        <img src="@/assets/img/player/edit.png" alt="edit">
+                    </div>
+                    
+                </div>                
                 <div class="inner-block">
 
                     <div class="left-block">
@@ -30,17 +36,8 @@
                         </div>
 
                         <div class="social">
-                            <a :href="Authstore.user.profileurl" class="social-icon">
+                            <a :href="player.profileurl" class="social-icon">
                                 <img src="@/assets/img/player/steam.png" alt="social">
-                            </a>
-                            <a href="" class="social-icon">
-                                <img src="@/assets/img/player/twitch.png" alt="social">
-                            </a>
-                            <a href="" class="social-icon">
-                                <img src="@/assets/img/player/youtube.png" alt="social">
-                            </a>
-                            <a href="" class="social-icon">
-                                <img src="@/assets/img/player/vkontakte.png" alt="social">
                             </a>
                         </div>
                     </div>
@@ -52,9 +49,14 @@
     </div>
 </template>
 <script setup>
-import { useAuthStore } from '@/store/auth.js';
 
-const Authstore = useAuthStore();
+const props = defineProps({
+  player: {
+    type: Object,
+    required: true
+  }
+})
+
 </script>
 <style scoped>
 .content {
@@ -74,6 +76,18 @@ const Authstore = useAuthStore();
     width: 220px;
     height: 220px;
     border-radius: 10px 0px 0px 10px;
+}
+
+.top-bar {
+    display: flex;
+}
+
+.edit-img img {
+    width: 35px;
+    height: 35px;
+    margin-top: 10px;
+    margin-right: 10px;
+    object-fit: contain;
 }
 
 .profile-block {
@@ -110,10 +124,12 @@ const Authstore = useAuthStore();
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
 }
 
 .download-cfg {
-    flex-direction: column;
+    display: flex;
+    flex-direction: row;
     align-items: self-start;
 }
 
@@ -123,6 +139,7 @@ const Authstore = useAuthStore();
     font-weight: 700;
     text-decoration: none;
     color: #c3f5f1;
+    padding-right: 10px;
 }
 
 .social {
