@@ -45,6 +45,11 @@ const router = createRouter({
       component: () => import('../views/TrainingPage.vue')
     },
     {
+      path: '/generator',
+      name: 'generator',
+      component: () => import('../views/GeneratorPage.vue')
+    },
+    {
       path: '/human',
       name: 'human',
       component: () => import('../views/HumanBench.vue')

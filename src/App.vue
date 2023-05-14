@@ -4,7 +4,7 @@
     <nav class="navigation start">
       <router-link class="nav-link" to="/players">Игроки</router-link>
       <router-link class="nav-link" to="/Training">Тренировки</router-link>
-      <router-link class="nav-link" to="/">Генератор</router-link>
+      <router-link class="nav-link" to="/generator">Генератор</router-link>
       <router-link class="nav-link" to="/blog">Блог</router-link>
     </nav>
 

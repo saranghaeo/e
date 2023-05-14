@@ -1,5 +1,10 @@
 <template>
-    <div class="block" v-if="showBlock" @click="stopTimer">click me</div>
+    <div class="block__click" v-if="showBlock" @click="stopTimer">
+      <p>click me</p>
+    </div>
+    <div class="block__ready" v-else>
+       <p>ready</p>
+    </div>
 </template>
   
 <script>
@@ -29,15 +34,6 @@ export default {
             this.startTimer();
         }, this.delay);
     },
-    updated() {
-        console.log("updated");
-    },
-    beforeUpdate() {
-        console.log("before updated");
-    },
-    unmounted() {
-        console.log("unmounted");
-    },
     data() {
         return {
             showBlock: false,
@@ -49,7 +45,7 @@ export default {
 </script>
   
 <style scoped>
-.block {
+.block__click {
     width: 500px;
     height: 250px;
     border-radius: 20px;
@@ -58,6 +54,25 @@ export default {
     text-align: center;
     padding: 105px;
     font-size: 32px;
+}
+
+.block__ready {
+    width: 500px;
+    height: 250px;
+    border-radius: 20px;
+    background: red;
+    color: white;
+    text-align: center;
+    padding: 105px;
+    font-size: 32px;
+}
+
+.block__ready p {
+    cursor: default;
+}
+
+.block__click {
+    cursor: pointer;
 }
 </style>
   

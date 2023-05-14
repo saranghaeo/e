@@ -22,7 +22,7 @@ export default {
         console.log("this.score", this.score);
         if (this.score < 250) {
             this.rank = "Giga chad";
-        } else if (this.score < 300) {
+        } else if (this.score <= 300) {
             this.rank = "Norm";
         } else if (this.score > 300) {
             this.rank = "Idi potren'sya";
