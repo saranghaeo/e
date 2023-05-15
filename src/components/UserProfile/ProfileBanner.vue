@@ -8,9 +8,9 @@
             <div class="profile-block">
                 <div class="top-bar">
                     <h2 class="nickname">{{ player.personaname }}</h2>
-                    <div class="edit-img">
+                    <router-link :to="'/edit/' + player.steam_id" class="edit-img">
                         <img src="@/assets/img/player/edit.png" alt="edit">
-                    </div>
+                    </router-link>
                     
                 </div>                
                 <div class="inner-block">
@@ -18,10 +18,10 @@
                     <div class="left-block">
                         <div class="team">
                             <p><b>Команда:</b></p>
-                            <p class="name-of-team">none</p>
+                            <p class="name-of-team">{{ player.team }}</p>
                         </div>
                         <div class="about">
-                            <pre>none</pre>
+                            <pre>{{ player.about }}</pre>
                         </div>
                     </div>
 
@@ -162,5 +162,6 @@ pre {
     padding: 12px 15px;
     font-family: 'Montserrat', sans-serif;
     white-space: break-spaces;
+    word-wrap: break-word;
 }
 </style>

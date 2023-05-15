@@ -20,6 +20,11 @@ const router = createRouter({
       component: () => import('../views/PlayerProfile.vue')
     },
     {
+      path: '/edit/:steam_id',
+      name: 'edit',
+      component: () => import('../views/ProfileEdit.vue')
+    },
+    {
       path: '/blog',
       name: 'blog',
       component: () => import('../views/BlogPage.vue')

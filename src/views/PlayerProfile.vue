@@ -24,7 +24,7 @@ const loadUser = async () => {
   const steam_id = useRoute().params.steam_id
   const { data, error } = await supabase
     .from('users')
-    .select('steam_id, personaname, avatarfull, profileurl', 'about', 'team')
+    .select('steam_id, personaname, avatarfull, profileurl, about, team')
     .eq('steam_id', steam_id)
 
   if (error) {
