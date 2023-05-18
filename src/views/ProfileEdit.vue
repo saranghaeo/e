@@ -1,12 +1,14 @@
 <template>
   <div class="content">
     <h1 class="title">Edit Profile</h1>
-    <Edit />
+    <Edit/>
   </div>
 </template>
   
 <script setup>
+
 import Edit from '@/components/UserProfile/Edit.vue'
+
 </script>
 
 <style scoped>

@@ -1,49 +1,50 @@
 <template>
     <div class="content">
-        <div class="block">
-            <div class="avatar">
-                <img :src="player.avatarfull" :alt="player.personaname">
-            </div>
-
-            <div class="profile-block">
-                <div class="top-bar">
-                    <h2 class="nickname">{{ player.personaname }}</h2>
-                </div>                
-                <div class="inner-block">
-
-                    <div class="left-block">
-                        <div class="team">
-                            <p><b>Команда:</b></p>
-                            <p class="name-of-team">{{ player.team }}</p>
-                        </div>
-                        <div class="about">
-                            <pre>{{ player.about }}</pre>
-                        </div>
-                    </div>
-
-                    <div class="right-block">
-                        <div class="download-cfg">
-                            <router-link to="" class="cfg">
-                                <p>Config.cfg</p>
-                            </router-link>
-                            <router-link to="" class="cfg">
-                                <p>Autoexec.cfg</p>
-                            </router-link>
-                        </div>
-
-                        <div class="social">
-                            <a :href="player.profileurl" class="social-icon">
-                                <img src="@/assets/img/player/steam.png" alt="social">
-                            </a>
-                        </div>
-                    </div>
-
-
-                </div>
-            </div>
+      <div class="block">
+        <div class="avatar">
+          <img :src="player.avatarfull" :alt="player.personaname">
         </div>
+  
+        <div class="profile-block">
+          <div class="top-bar">
+            <h2 class="nickname">{{ player.personaname }}</h2>
+            <router-link to="/edit" class="edit-img">
+              <img src="@/assets/img/player/edit.png" alt="edit">
+            </router-link>
+          </div>
+  
+          <div class="inner-block">
+            <div class="left-block">
+              <div class="team">
+                <p><b>Команда:</b></p>
+                <p class="name-of-team">{{ player.team }}</p>
+              </div>
+              <div class="about">
+                <pre>{{ player.about }}</pre>
+              </div>
+            </div>
+  
+            <div class="right-block">
+              <div class="download-cfg">
+                <router-link to="" class="cfg">
+                  <p>Config.cfg</p>
+                </router-link>
+                <router-link to="" class="cfg">
+                  <p>Autoexec.cfg</p>
+                </router-link>
+              </div>
+  
+              <div class="social">
+                <a :href="player.profileurl" class="social-icon">
+                  <img src="@/assets/img/player/steam.png" alt="social">
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-</template>
+  </template>
 <script setup>
 
 const props = defineProps({
@@ -52,7 +53,6 @@ const props = defineProps({
     required: true
   }
 })
-
 </script>
 <style scoped>
 .content {

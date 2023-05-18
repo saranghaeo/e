@@ -15,14 +15,20 @@ const router = createRouter({
     },
     {
       path: '/players/:steam_id',
-      name: 'profile',
+      name: 'profiles',
       props: true,
       component: () => import('../views/PlayerProfile.vue')
     },
     {
-      path: '/edit/:steam_id',
+      path: '/edit',
       name: 'edit',
       component: () => import('../views/ProfileEdit.vue')
+    },
+    {
+      path: '/profile',
+      name: 'profile',
+      props: true,
+      component: () => import('../views/Profile.vue')
     },
     {
       path: '/blog',
@@ -38,11 +44,6 @@ const router = createRouter({
       path: '/gsync',
       name: 'gsync',
       component: () => import('../views/Blogs/gsync.vue')
-    },
-    {
-      path: '/auth/steam',
-      name: 'auth-steam',
-      component: () => import('../views/AuthSteam.vue')
     },
     {
       path: '/training',

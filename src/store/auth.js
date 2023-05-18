@@ -1,12 +1,14 @@
 import { defineStore } from 'pinia'
 import axios from 'axios'
 import { createClient } from '@supabase/supabase-js'
+import { v4 as uuidv4 } from 'uuid';
 
 const supabase = createClient('https://eqtgcskjmwukbdbzmzgf.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVxdGdjc2tqbXd1a2JkYnptemdmIiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODM5NzUyNTIsImV4cCI6MTk5OTU1MTI1Mn0.CfbPB8I0XFIsvbVL18u7aI68ExOMrBC_f7MdqYcIM7s')
 
 export const useAuthStore = defineStore('auth', {
   state: () => ({
-    user: null
+    user: null,
+    token: null
   }),
   actions: {
     async login() {
@@ -48,6 +50,8 @@ export const useAuthStore = defineStore('auth', {
       const assocHandle = queryParams.get('openid.assoc_handle')
       const signed = queryParams.get('openid.signed')
       const signature = queryParams.get('openid.sig')
+      
+      const token = uuidv4()
 
       const response = axios.get("https://steamcommunity.com/openid/login?", {
         params: {
@@ -79,16 +83,17 @@ export const useAuthStore = defineStore('auth', {
       // Store the user object in state
       user.profileurl = 'https://steamcommunity.com/profiles/' + user.steamid
       this.user = user
+      this.token = token
 
-      await this.saveUserDataToSupabase(user)
+      await this.saveUserDataToSupabase(user, token)
     },
-
     logout() {
       // Clear the user object from state
       this.user = null
+      this.token = null
     },
 
-    async saveUserDataToSupabase(user) {
+    async saveUserDataToSupabase(user, token) {
       const { data, error } = await supabase
         .from('users')
         .upsert([
@@ -96,7 +101,8 @@ export const useAuthStore = defineStore('auth', {
             steam_id: user.steamid,
             personaname: user.personaname,
             profileurl: user.profileurl,
-            avatarfull: user.avatarfull
+            avatarfull: user.avatarfull,
+            suid: token
           }
         ])
 

@@ -13,10 +13,14 @@
     </nav>
 
     <div v-if="Authstore.user" class="user-auth">
-      <img :src="Authstore.user.avatarfull" :alt="Authstore.user.avatarfull">
-
+      <router-link to="/profile">
+        <img :src="Authstore.user.avatarfull" :alt="Authstore.user.avatarfull">
+      </router-link>
+    
       <div class="logout_nickname">
-        <h3 class="nickname-auth">{{ Authstore.user.personaname }}</h3>
+        <router-link to="/profile">
+          <h3 class="nickname-auth">{{ Authstore.user.personaname }}</h3>
+        </router-link>
         <button @click="Authstore.logout()" class="logout-btn">Выйти</button>
       </div>
 
@@ -185,6 +189,7 @@ body {
   font-family: 'Montserrat', sans-serif;
   transition: 0.1s;
 }
+
 .logout-btn:hover {
   color: #fff;
 }
