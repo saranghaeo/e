@@ -8,7 +8,8 @@ const supabase = createClient('https://eqtgcskjmwukbdbzmzgf.supabase.co', 'eyJhb
 export const useAuthStore = defineStore('auth', {
   state: () => ({
     user: null,
-    token: null
+    token: null,
+    settings_id: null
   }),
   actions: {
     async login() {
@@ -50,7 +51,7 @@ export const useAuthStore = defineStore('auth', {
       const assocHandle = queryParams.get('openid.assoc_handle')
       const signed = queryParams.get('openid.signed')
       const signature = queryParams.get('openid.sig')
-      
+
       const token = uuidv4()
 
       const response = axios.get("https://steamcommunity.com/openid/login?", {

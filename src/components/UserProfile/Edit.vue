@@ -1,19 +1,21 @@
 <template>
-  <form @submit.prevent="saveProfile" class="edit">
-    <label class="name">Team:</label>
-    <input v-model="team" type="text" class="field">
-    <label class="name">About:</label>
-    <textarea v-model="about" class="field-text"></textarea>
-    <label class="name">File:</label>
-    <input type="file" @change="handleFileChange" class="field-file">
-    <div class="button">
-      <button type="submit" class="btn-save">Save</button>
-    </div>
-  </form>
+  <div class="edit-content">
+    <form @submit.prevent="saveProfile" class="edit">
+      <label class="name">Команда:</label>
+      <input v-model="team" type="text" class="field">
+      <label class="name">Описание:</label>
+      <textarea v-model="about" class="field-text"></textarea>
+      <div class="button">
+        <button type="submit" class="btn-save">Сохранить профиль</button>
+      </div>
+    </form>
+    <UploadFiles />
+
+  </div>
 </template>
 
 <script setup>
-
+import UploadFiles from '@/components/UserProfile/ForEditComp/UploadFiles.vue'
 import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import { createClient } from '@supabase/supabase-js';
@@ -21,61 +23,57 @@ import { useAuthStore } from '@/store/auth.js';
 
 const router = useRouter()
 
-const supabaseUrl = 'https://eqtgcskjmwukbdbzmzgf.supabase.co';
+const supabaseUrl = 'https://eqtgcskjmwukbdbzmzgf.supabase.co'
 const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVxdGdjc2tqbXd1a2JkYnptemdmIiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODM5NzUyNTIsImV4cCI6MTk5OTU1MTI1Mn0.CfbPB8I0XFIsvbVL18u7aI68ExOMrBC_f7MdqYcIM7s'
 const supabase = createClient(supabaseUrl, supabaseAnonKey)
 
-const Authstore = useAuthStore();
-const about = ref('');
-const team = ref('');
-const file = ref(null);
-
-const handleFileChange = (event) => {
-  const selectedFile = event.target.files[0];
-  file.value = selectedFile;
-};
+const Authstore = useAuthStore()
+const about = ref('')
+const team = ref('')
 
 const saveProfile = async () => {
-    const suid = Authstore.token
-    const { data, error } = await supabase
-      .from('users')
-      .update({
-        about: about.value,
-        team: team.value
-      })
-      .eq('suid', suid)
+  const suid = Authstore.token
+  const { data, error } = await supabase
+    .from('users')
+    .update({
+      about: about.value,
+      team: team.value
+    })
+    .eq('suid', suid)
 
-    if (error) {
-      console.error(error);
-    } else {
-      console.log('Profile saved!')
-      router.push('/profile')
-    }
+  if (error) {
+    console.error(error)
+  } else {
+    console.log('Profile saved!')
+    router.push('/profile')
+  }
 };
 
-  onMounted(async () => {
-    const suid = Authstore.token
-    const { data, error } = await supabase
-      .from('users')
-      .select('about, team')
-      .eq('suid', suid)
-      .single();
+onMounted(async () => {
+  const suid = Authstore.token
+  const { data, error } = await supabase
+    .from('users')
+    .select('about, team')
+    .eq('suid', suid)
+    .single()
 
-    if (error) {
-      console.error(error);
-    } else {
-      about.value = data.about;
-      team.value = data.team;
-    }
-  });
-
+  if (error) {
+    console.error(error)
+  } else {
+    about.value = data.about
+    team.value = data.team
+  }
+})
 </script>
 
 <style scoped>
+.edit-content {
+  display: flex;
+}
+
 .edit {
   display: flex;
   flex-direction: column;
-  max-width: 300px;
 }
 
 .name {
@@ -120,7 +118,7 @@ const saveProfile = async () => {
 }
 
 .btn-save {
-  font-size: 18px;
+  font-size: 20px;
   color: #fff;
   font-family: 'Montserrat', sans-serif;
   padding: 3px 20px;
