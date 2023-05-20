@@ -17,15 +17,8 @@
   
 <script setup>
 import { ref } from 'vue';
-import { useRouter } from 'vue-router';
-import { createClient } from '@supabase/supabase-js';
+import { supabase } from '@/supabase.js'
 import { useAuthStore } from '@/store/auth.js';
-
-const router = useRouter()
-
-const supabaseUrl = 'https://eqtgcskjmwukbdbzmzgf.supabase.co'
-const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVxdGdjc2tqbXd1a2JkYnptemdmIiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODM5NzUyNTIsImV4cCI6MTk5OTU1MTI1Mn0.CfbPB8I0XFIsvbVL18u7aI68ExOMrBC_f7MdqYcIM7s'
-const supabase = createClient(supabaseUrl, supabaseAnonKey)
 
 const authStore = useAuthStore()
 const configFile = ref(null)
@@ -42,7 +35,7 @@ const handleConfigFileChange = (event) => {
     alert('Please select a file with .cfg extension.')
     configFile.value = null
   }
-};
+}
 
 const handleVideoFileChange = (event) => {
   const selectedFile = event.target.files[0]
@@ -55,42 +48,40 @@ const handleVideoFileChange = (event) => {
     alert('Please select a file with .txt extension.')
     videoFile.value = null
   }
-};
+}
 
 const saveProfile = async () => {
   const steamid = authStore.user.steamid
-  const updatedData = {}
 
-  if (configFile.value) {
-    const { data: configData, error: configError } = await supabase.storage
+  const uploadFile = async (file, fileName) => {
+    const { data, error } = await supabase.storage
       .from('profile-files')
-      .update(`user-${steamid}/config.cfg`, configFile.value)
+      .upload(`${steamid}/${fileName}`, file)
 
-    if (configError) {
-      console.error(configError)
-    }else {
-      console.log('config.cfg upload')
+    if (error) {
+      console.error(error)
+    } else {
+      console.log(`${fileName} upload`)
     }
 
-    const configUrl = configData.Key
-    updatedData.configFile = configUrl
+    const { signedURL, error: signedURLError } = await supabase.storage
+      .from('profile-files')
+      .createSignedUrl(`${steamid}/${fileName}`, null, {
+        download: true,
+      })
+
+    if (signedURLError) {
+      console.error(signedURLError)
+    }
+  }
+
+  if (configFile.value) {
+    await uploadFile(configFile.value, 'config.cfg')
   }
 
   if (videoFile.value) {
-    const { data: videoData, error: videoError } = await supabase.storage
-      .from('profile-files')
-      .update(`user-${steamid}/video.txt`, videoFile.value)
-
-    if (videoError) {
-      console.error(videoError)
-    }else {
-      console.log('Video.txt upload')
-    }
-
-    const videoUrl = videoData.Key
-    updatedData.videoFile = videoUrl
+    await uploadFile(videoFile.value, 'video.txt')
   }
-
 }
 </script>
   

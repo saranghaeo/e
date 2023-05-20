@@ -18,15 +18,10 @@
 import UploadFiles from '@/components/UserProfile/ForEditComp/UploadFiles.vue'
 import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
-import { createClient } from '@supabase/supabase-js';
+import { supabase } from '@/supabase.js'
 import { useAuthStore } from '@/store/auth.js';
 
 const router = useRouter()
-
-const supabaseUrl = 'https://eqtgcskjmwukbdbzmzgf.supabase.co'
-const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVxdGdjc2tqbXd1a2JkYnptemdmIiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODM5NzUyNTIsImV4cCI6MTk5OTU1MTI1Mn0.CfbPB8I0XFIsvbVL18u7aI68ExOMrBC_f7MdqYcIM7s'
-const supabase = createClient(supabaseUrl, supabaseAnonKey)
-
 const Authstore = useAuthStore()
 const about = ref('')
 const team = ref('')

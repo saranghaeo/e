@@ -8,8 +8,7 @@ const supabase = createClient('https://eqtgcskjmwukbdbzmzgf.supabase.co', 'eyJhb
 export const useAuthStore = defineStore('auth', {
   state: () => ({
     user: null,
-    token: null,
-    settings_id: null
+    token: null
   }),
   actions: {
     async login() {

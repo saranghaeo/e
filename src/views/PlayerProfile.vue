@@ -9,12 +9,8 @@
 <script setup>
 import ProfileBanner from '@/components/UserProfile/ProfileBanner.vue';
 import { ref, onMounted } from 'vue'
-import { createClient } from '@supabase/supabase-js'
+import { supabase } from '@/supabase.js'
 import { useRoute } from 'vue-router'
-
-const supabaseUrl = 'https://eqtgcskjmwukbdbzmzgf.supabase.co'
-const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVxdGdjc2tqbXd1a2JkYnptemdmIiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODM5NzUyNTIsImV4cCI6MTk5OTU1MTI1Mn0.CfbPB8I0XFIsvbVL18u7aI68ExOMrBC_f7MdqYcIM7s'
-const supabase = createClient(supabaseUrl, supabaseAnonKey)
 
 const playerData = ref(null)
 const isLoading = ref(false)

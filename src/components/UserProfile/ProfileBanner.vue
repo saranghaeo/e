@@ -1,56 +1,81 @@
 <template>
     <div class="content">
-        <div class="block">
-            <div class="avatar">
-                <img :src="player.avatarfull" :alt="player.personaname">
-            </div>
-
-            <div class="profile-block">
-                <div class="top-bar">
-                    <h2 class="nickname">{{ player.personaname }}</h2>
-                </div>                
-                <div class="inner-block">
-
-                    <div class="left-block">
-                        <div class="team">
-                            <p><b>Команда:</b></p>
-                            <p class="name-of-team">{{ player.team }}</p>
-                        </div>
-                        <div class="about">
-                            <pre>{{ player.about }}</pre>
-                        </div>
-                    </div>
-
-                    <div class="right-block">
-                        <div class="download-cfg">
-                            <router-link to="" class="cfg">
-                                <p>Config.cfg</p>
-                            </router-link>
-                            <router-link to="" class="cfg">
-                                <p>Autoexec.cfg</p>
-                            </router-link>
-                        </div>
-
-                        <div class="social">
-                            <a :href="player.profileurl" class="social-icon">
-                                <img src="@/assets/img/player/steam.png" alt="social">
-                            </a>
-                        </div>
-                    </div>
-
-
-                </div>
-            </div>
+      <div class="block">
+        <div class="avatar">
+          <img :src="player.avatarfull" :alt="player.personaname">
         </div>
+  
+        <div class="profile-block">
+          <div class="top-bar">
+            <h2 class="nickname">{{ player.personaname }}</h2>
+          </div>
+          <div class="inner-block">
+            <div class="left-block">
+              <div class="team">
+                <p><b>Команда:</b></p>
+                <p class="name-of-team">{{ player.team }}</p>
+              </div>
+              <div class="about">
+                <pre>{{ player.about }}</pre>
+              </div>
+            </div>
+  
+            <div class="right-block">
+              <div class="download-cfg">
+                <a :href="linkCfg" class="cfg">
+                  <p>Config.cfg</p>
+                </a>
+                <a :href="linkVideo" class="cfg">
+                  <p>Video.txt</p>
+                </a>
+              </div>
+  
+              <div class="social">
+                <a :href="player.profileurl" class="social-icon">
+                  <img src="@/assets/img/player/steam.png" alt="social">
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-</template>
+  </template>
 <script setup>
+import { ref, onMounted } from 'vue'
+import { useAuthStore } from '@/store/auth.js'
+import { supabase } from '@/supabase.js';
+const store = useAuthStore()
+
+const linkCfg = ref()
+const linkVideo = ref()
+
+onMounted(async () => {
+    const steamid = store.user.steamid
+    const getFilePublicUrl = async (fileName, linkValue) => {
+        const { data, error } = await supabase.storage
+            .from('profile-files')
+            .getPublicUrl(`${steamid}/${fileName}`, {
+                download: true,
+            })
+        if (error) {
+            console.error(error)
+        } else {
+            console.log(`${fileName} URL:`, data.publicUrl)
+            linkValue.value = data.publicUrl
+        }
+    }
+    await Promise.all([
+        getFilePublicUrl('config.cfg', linkCfg),
+        getFilePublicUrl('video.txt', linkVideo),
+    ])
+})
 
 const props = defineProps({
-  player: {
-    type: Object,
-    required: true
-  }
+    player: {
+        type: Object,
+        required: true
+    }
 })
 
 </script>
@@ -145,9 +170,11 @@ const props = defineProps({
 .social-icon {
     margin-right: 8px;
 }
+
 .about {
     padding-top: 10px;
 }
+
 pre {
     background-color: #181818;
     width: 450px;
