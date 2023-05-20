@@ -20,18 +20,6 @@ const AuthStore = useAuthStore();
 const playersList = ref([])
 const isLoading = ref(false)
 
-// const loadUsers = async () => {
-//   const { data, error } = await supabase
-//     .from('users')
-//     .select('id, steam_id, personaname, avatarfull, profileurl')
-
-//   if (error) {
-//     console.error(error)
-//   } else {
-//     playersList.value = data
-//   }
-// }
-
 const loadUsers = async () => {
     isLoading.value = true
     supabase

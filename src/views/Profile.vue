@@ -30,22 +30,6 @@ const loadProfile = async () => {
         playerData.value = data[0]
     }
 }
-
-// const loadProfile = async () => {
-//     const steam_id = useRoute().params.steam_id
-//     supabase
-//         .from('users')
-//         .select('steam_id, personaname, avatarfull, profileurl, about, team')
-//         .eq('steam_id', steam_id)
-//         .then(({ data, error }) => {
-//             if (error) {
-//                 console.error(error)
-//             } else {
-//                 playerData.value = data
-//             }
-//         })
-//         .catch(error => console.error(error))
-// }
 onMounted(() => {
     loadProfile()
 })

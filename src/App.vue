@@ -18,7 +18,7 @@
       </router-link>
     
       <div class="logout_nickname">
-        <router-link to="/profile">
+        <router-link to="/profile" class="nav-link">
           <h3 class="nickname-auth">{{ Authstore.user.personaname }}</h3>
         </router-link>
         <button @click="Authstore.logout()" class="logout-btn">Выйти</button>

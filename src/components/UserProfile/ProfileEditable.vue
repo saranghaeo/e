@@ -65,7 +65,6 @@ onMounted(async () => {
     if (error) {
       console.error(error)
     } else {
-      console.log(`${fileName} URL:`, data.publicUrl)
       linkValue.value = data.publicUrl
     }
   }
