@@ -1,6 +1,6 @@
 <template>
     <div class="content">
-        <div class="block" v-if="Authstore.user">
+        <div class="block">
             <div class="profile-block">
                 <div class="title">
                     <img src="@/assets/img/player/mouse.png" alt="icon">
@@ -55,9 +55,6 @@
     </div>
 </template>
 <script setup>
-import { useAuthStore } from '@/store/auth.js';
-
-const Authstore = useAuthStore();
 
 const props = defineProps({
     settings: {
