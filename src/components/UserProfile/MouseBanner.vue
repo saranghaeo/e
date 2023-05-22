@@ -10,43 +10,43 @@
                     <tbody>
                         <tr class="number">
                             <th>DPI</th>
-                            <td>800</td>
+                            <td>{{ settings.DPI }}</td>
                         </tr>
                     </tbody>
                     <tbody>
                         <tr class="number">
                             <th>Sensitivity</th>
-                            <td>1</td>
+                            <td>{{ settings.Sensitivity }}</td>
                         </tr>
                     </tbody>
                     <tbody>
                         <tr class="number">
                             <th>Zoom Sensitivity</th>
-                            <td>1.1</td>
+                            <td>{{ settings['Zoom Sensitivity'] }}</td>
                         </tr>
                     </tbody>
                     <tbody>
                         <tr class="number">
                             <th>Hz</th>
-                            <td>1000</td>
+                            <td>{{ settings.Hz }}</td>
                         </tr>
                     </tbody>
                     <tbody>
                         <tr class="number">
                             <th>Windows Sensitivity</th>
-                            <td>6</td>
+                            <td>{{ settings['Windows Sensitivity'] }}</td>
                         </tr>
                     </tbody>
                     <tbody>
                         <tr class="number">
                             <th>Raw Input</th>
-                            <td>1</td>
+                            <td>{{ settings['Raw Input'] }}</td>
                         </tr>
                     </tbody>
                     <tbody>
                         <tr class="number">
                             <th>Mouse Acceleration</th>
-                            <td>0</td>
+                            <td>{{ settings['Mouse Acceleration'] }}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -58,6 +58,13 @@
 import { useAuthStore } from '@/store/auth.js';
 
 const Authstore = useAuthStore();
+
+const props = defineProps({
+    settings: {
+        type: Object,
+        required: true
+    }
+})
 </script>
 <style scoped>
 table.settings>tbody tr {
@@ -93,16 +100,19 @@ tbody:after {
 
 .number {
     width: 235px;
-    
+
 }
-.number th{
+
+.number th {
     font-size: 14px;
     font-weight: 500;
 }
-.number td{
+
+.number td {
     font-size: 14px;
     font-weight: 700;
 }
+
 .settings {
     display: flex;
     flex-wrap: wrap;
@@ -140,5 +150,4 @@ tbody:after {
 .title img {
     height: 24px;
     padding-right: 5px;
-}
-</style>
+}</style>

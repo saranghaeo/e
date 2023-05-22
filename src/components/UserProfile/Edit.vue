@@ -5,12 +5,15 @@
       <input v-model="team" type="text" class="field">
       <label class="name">Описание:</label>
       <textarea v-model="about" class="field-text"></textarea>
+      <label class="name">Параметры запуска:</label>
+      <input v-model="launchOption" type="text" class="field">
+      <label class="name">Настройки мыши:</label>
+      <textarea v-model="mouseSettings" class="field-json"></textarea>
       <div class="button">
         <button type="submit" class="btn-save">Сохранить профиль</button>
       </div>
     </form>
     <UploadFiles />
-
   </div>
 </template>
 
@@ -25,30 +28,14 @@ const router = useRouter()
 const Authstore = useAuthStore()
 const about = ref('')
 const team = ref('')
-
-const saveProfile = async () => {
-  const suid = Authstore.token
-  const { data, error } = await supabase
-    .from('users')
-    .update({
-      about: about.value,
-      team: team.value
-    })
-    .eq('suid', suid)
-
-  if (error) {
-    console.error(error)
-  } else {
-    console.log('Profile saved!')
-    router.push('/profile')
-  }
-};
+const launchOption = ref('')
+const mouseSettings = ref('')
 
 onMounted(async () => {
   const suid = Authstore.token
   const { data, error } = await supabase
     .from('users')
-    .select('about, team')
+    .select('about, team, settings_id')
     .eq('suid', suid)
     .single()
 
@@ -58,10 +45,65 @@ onMounted(async () => {
     about.value = data.about
     team.value = data.team
   }
+
+  const settingsId = data.settings_id;
+
+  const { data: settingsData, error: settingsError } = await supabase
+    .from('settings')
+    .select('launch_option, mouse_settings')
+    .eq('id', settingsId)
+
+  if (settingsError) {
+    console.error(settingsError)
+  } else {
+    launchOption.value = settingsData[0].launch_option
+    mouseSettings.value = JSON.stringify(settingsData[0].mouse_settings, null, 2)
+  }
 })
+
+const saveProfile = async () => {
+  const suid = Authstore.token
+  const { data: userData, error: userError } = await supabase
+    .from('users')
+    .select('settings_id')
+    .eq('suid', suid)
+    .single()
+  if (userError) {
+    return
+  }
+  const settingsId = userData.settings_id;
+
+  const { error: userUpdateError } = await supabase
+    .from('users')
+    .update({
+      about: about.value,
+      team: team.value,
+    })
+    .eq('suid', suid)
+
+  if (userUpdateError) {
+    console.error(userUpdateError);
+  }
+
+  const { error: settingsUpdateError } = await supabase
+    .from('settings')
+    .update({
+      launch_option: launchOption.value,
+      mouse_settings: JSON.parse(mouseSettings.value)
+    })
+    .eq('id', settingsId)
+
+  if (settingsUpdateError) {
+    console.error(settingsUpdateError);
+  } else {
+    console.log('Profile saved!');
+    router.push('/profile');
+  }
+}
 </script>
 
 <style scoped>
+
 .edit-content {
   display: flex;
 }
@@ -97,10 +139,29 @@ onMounted(async () => {
   color: #fff;
 }
 
+.field-json:focus {
+  color: #fff;
+}
+
 .field-text {
   background-color: #181818;
   width: 450px;
   height: 90px;
+  border-radius: 5px;
+  font-size: 16px;
+  color: #666666;
+  padding: 12px 15px;
+  font-family: 'Montserrat', sans-serif;
+  white-space: break-spaces;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  resize: none;
+}
+
+.field-json {
+  background-color: #181818;
+  width: 450px;
+  height: 200px;
   border-radius: 5px;
   font-size: 16px;
   color: #666666;

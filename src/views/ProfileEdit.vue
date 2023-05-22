@@ -2,6 +2,7 @@
   <div class="content" v-if="Authstore.user">
     <h1 class="title">Edit Profile</h1>
     <Edit />
+    
   </div>
   <div v-else class="warning">
     <h1>Для редактирования профиля сначало нужно пройти авторизацию</h1>

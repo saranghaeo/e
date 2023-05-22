@@ -1,6 +1,6 @@
 <template>
     <div class="content">
-        <div class="block" v-if="Authstore.user">
+        <div class="block">
             <div class="profile-block">
                 <div class="title">
                     <div class="icon">
@@ -13,7 +13,7 @@
                     </div>
                 </div>
                 <div class="startupsettings">
-                    <pre ref="preElement">-novid -freq 240 -nojoy -tickrate 128 +exec autoexec.cfg -allow_third_party_software</pre>
+                    <pre ref="preElement">{{ settings.launch_option }}</pre>
                 </div>
             </div>
         </div>
@@ -21,9 +21,6 @@
 </template>
 <script setup>
 import { ref } from 'vue';
-import { useAuthStore } from '@/store/auth.js';
-
-const Authstore = useAuthStore();
 const preElement = ref(null);
 
 function copyToClipboard() {
@@ -32,6 +29,13 @@ function copyToClipboard() {
         navigator.clipboard.writeText(textToCopy);
     }
 }
+
+const props = defineProps({
+    settings: {
+        type: Object,
+        required: true
+    }
+})
 </script>
 <style scoped>
 
