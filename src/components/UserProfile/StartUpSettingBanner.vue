@@ -52,6 +52,8 @@ const props = defineProps({
 .copy {
     border: none;
     background: none;
+    font-size: 16px;
+    font-weight: 600;
     color: #fff;
     padding: 5px 5px;
     font-family: 'Montserrat', sans-serif;
@@ -68,8 +70,9 @@ const props = defineProps({
 }
 
 pre {
-    background-color: #181818;
+    background: rgba(43, 43, 43, 0.13);
     width: 90%;
+    height: 40px;
     border-radius: 10px;
     font-size: 14px;
     color: #666666;
@@ -87,14 +90,14 @@ pre {
 }
 
 .block {
-    width: 1100px;
+    width: 1020px;
+    height: 190px;
     display: flex;
 }
 
 .profile-block {
     width: 100%;
     background: #000000;
-    box-shadow: inset 5px 5px 35px rgba(255, 255, 255, 0.4);
     border-radius: 10px 10px 10px 10px;
     padding-bottom: 50px;
 }

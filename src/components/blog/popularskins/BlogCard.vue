@@ -28,8 +28,9 @@ export default {
     text-decoration: none;
     color: #fff;
     margin-bottom: 60px;
-    border: 1px solid #FFFFFF;
-    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.57);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 0px 10px 10px 0px;
 }
 
 .image-news img {
@@ -62,5 +63,10 @@ export default {
     display: flex;
     justify-content: flex-end;
     padding: 10px 20px 0 0;
+    transition: 0.3s;
+}
+
+.more:hover {
+    transform: scale(1.1);
 }
 </style>

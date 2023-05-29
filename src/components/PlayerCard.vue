@@ -37,11 +37,16 @@ const props = defineProps({
 <style scoped>
 .card {
   display: flex;
-  width: 490px;
+  width: 480px;
   height: 220px;
-  margin: 0 50px 60px 0;
+  margin: 0 30px 40px 0;
   text-decoration: none;
   color: #fff;
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: scale(1.05);
 }
 
 .avatar img {
@@ -58,13 +63,14 @@ const props = defineProps({
   padding: 40px 20px;
   gap: 15px;
   width: 270px;
-  box-shadow: inset 5px 5px 35px rgba(181, 181, 181, 0.8);
+  background: #00000042;
+  box-shadow: inset 0px 4px 40px rgba(96, 0, 252, 0.24);
   border-radius: 0px 10px 10px 0px;
-  transition: all 0.3s;
+  transition: 0.3s;
 }
 
 .text-block:hover {
-  box-shadow: inset 5px 5px 80px rgba(181, 181, 181, 0.8);
+  box-shadow: inset 5px 5px 80px rgba(96, 0, 252, 0.6);
 }
 
 .nickname {

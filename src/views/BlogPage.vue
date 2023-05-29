@@ -13,7 +13,9 @@ import gsync from "@/components/blog/gsync/BlogCard.vue"
 </script>
 <style scoped>
 .content {
-    padding: 60px 120px
+    padding: 60px 0;
+    max-width: 1540px;
+    margin: 0 auto;
 }
 
 .title {

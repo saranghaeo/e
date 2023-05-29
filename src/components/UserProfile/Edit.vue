@@ -120,7 +120,7 @@ const saveProfile = async () => {
 }
 
 .field {
-  background-color: #181818;
+  background-color: #0000007b;
   height: 30px;
   border-radius: 5px;
   font-size: 16px;
@@ -144,7 +144,7 @@ const saveProfile = async () => {
 }
 
 .field-text {
-  background-color: #181818;
+  background-color: #0000007b;
   width: 450px;
   height: 90px;
   border-radius: 5px;
@@ -158,8 +158,12 @@ const saveProfile = async () => {
   resize: none;
 }
 
+.field-text:focus {
+  color: #fff;
+}
+
 .field-json {
-  background-color: #181818;
+  background-color: #0000007b;
   width: 450px;
   height: 200px;
   border-radius: 5px;

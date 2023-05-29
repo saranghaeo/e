@@ -1,9 +1,11 @@
 <template>
-    <div class="block__click" v-if="showBlock" @click="stopTimer">
-      <p>click me</p>
-    </div>
-    <div class="block__ready" v-else>
-       <p>ready</p>
+    <div>
+        <div class="block__click" v-if="showBlock" @click="stopTimer">
+            <p>click me</p>
+        </div>
+        <div class="block__ready" v-else @click="resetTimer">
+            <p>ready</p>
+        </div>
     </div>
 </template>
   
@@ -27,6 +29,9 @@ export default {
             console.log("this.reactionTime", this.reactionTime);
             this.$emit("end", this.reactionTime);
         },
+        resetTimer() {
+            this.reactionTime = 0;
+        },
     },
     mounted() {
         setTimeout(() => {
@@ -43,6 +48,7 @@ export default {
     },
 };
 </script>
+  
   
 <style scoped>
 .block__click {

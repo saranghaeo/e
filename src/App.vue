@@ -27,7 +27,7 @@
     </div>
 
     <div v-else>
-      <button @click="Authstore.login()" class="sign-steam">Login with Steam</button>
+      <button @click="Authstore.login()" class="sign-steam">Войти через Steam</button>
     </div>
 
   </header>
@@ -39,45 +39,52 @@
   </router-view>
 
   <footer>
+    <div class="content-footer">
 
-    <div class="container-footer">
+      <div class="block-footer">
 
-      <h1 class="logo-footer">Exec</h1>
+        <h1 class="logo-footer">Exec</h1>
 
-      <div class="content-footer">
+        <div class="social-media">
 
-        <div class="navigation-footer">
+          <a href="https://discord.gg/9ZbU3HwNNR">
+            <img src="@/assets/img/social/footer/discord.png" alt="discord">
+          </a>
+          <a href="https://vk.com/desuyoyo">
+            <img src="@/assets/img/social/footer/vkontakte.png" alt="vkontakte">
+          </a>
+          <a href="https://steamcommunity.com/id/saranghaeo/">
+            <img src="@/assets/img/social/footer/steam.png" alt="steam">
+          </a>
+
+          <a href="https://github.com/saranghaeo">
+            <img src="@/assets/img/social/footer/github.png" alt="github">
+          </a>
+
+        </div>
+
+      </div>
+
+      <div class="block-nav">
+
+        <div class="section">
           <p class="title-link">Настройки</p>
           <nav class="nav-footer">
             <router-link class="link-footer" to="/players">Игроки</router-link>
-            <router-link class="link-footer" to="/">Генератор прицела</router-link>
+            <router-link class="link-footer" to="/generator">Генератор прицела</router-link>
           </nav>
         </div>
 
-        <div class="navigation-footer">
-          <p class="title-link">Тренировки и гайды</p>
+        <div class="section">
+          <p class="title-link">Тренировки и новости</p>
           <nav class="nav-footer">
-            <router-link class="link-footer" to="/">Игроки</router-link>
-            <router-link class="link-footer" to="/">Игроки</router-link>
-          </nav>
-        </div>
-
-        <div class="navigation-footer">
-          <p class="title-link">Новости</p>
-          <nav class="nav-footer">
-            <router-link class="link-footer" to="/">Игроки</router-link>
-            <router-link class="link-footer" to="/">Игроки</router-link>
+            <router-link class="link-footer" to="/Training">Тренировки</router-link>
+            <router-link class="link-footer" to="/blog">Блог</router-link>
           </nav>
         </div>
 
       </div>
 
-      <div class="social-media">
-        <img src="@/assets/img/social/footer/discord.png" alt="discord">
-        <img src="@/assets/img/social/footer/vkontakte.png" alt="vkontakte">
-        <img src="@/assets/img/social/footer/steam.png" alt="steam">
-        <img src="@/assets/img/social/footer/github.png" alt="github">
-      </div>
     </div>
 
     <p class="copyright">Copyright© 2023</p>
@@ -92,7 +99,7 @@ const Authstore = useAuthStore();
 </script>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Orbitron:wght@400;700;900&display=swap');
 
 *,
 *::before,
@@ -111,18 +118,20 @@ const Authstore = useAuthStore();
 }
 
 body {
-  background: #000000;
+  background: conic-gradient(from -66.6deg at 100% 0%, #414042 0deg, #060515 360deg);
   margin: 0;
   padding: 0;
 }
 
 .header {
   position: relative;
+  height: 10vh;
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 30px 20px;
+  padding: 30px 120px;
+  background: #000000;
 }
 
 .logo {
@@ -134,28 +143,31 @@ body {
 }
 
 .nav-link {
-  font-size: 16px;
+  font-size: 18px;
   color: #fff;
   text-decoration: none;
 }
 
 .logo-link {
-  font-size: 36px;
-  font-weight: 700;
   color: #fff;
   text-decoration: none;
+  font-family: 'Orbitron';
+  font-style: normal;
+  font-weight: 900;
+  font-size: 40px;
+  line-height: 50px;
 }
 
 .sign-steam {
   color: #fff;
   background: none;
-  font-size: 16px;
+  font-size: 18px;
   margin-right: 20px;
   font-family: 'Montserrat', sans-serif;
 }
 
 .sign-steam:hover {
-  text-decoration: underline;
+  transform: scale(1.1);
 }
 
 .user-auth {
@@ -171,7 +183,7 @@ body {
 }
 
 .nickname-auth {
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 500;
   padding: 0 10px;
   margin-bottom: 5px;
@@ -200,44 +212,58 @@ nav a {
 }
 
 footer {
-  padding: 30px 20px;
-}
-
-.logo-footer {
-  font-size: 48px;
-}
-
-.container-footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 30px 50px;
+  margin: 0 auto;
+  padding: 30px 120px;
+  background: #000000;
 }
 
 .content-footer {
   display: flex;
+  justify-content: space-between;
 }
 
-.navigation-footer {
-  text-align: center;
+.block-footer {
+  display: flex;
+  flex-direction: column;
+}
+
+.block-nav {
+  display: flex;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .nav-footer {
   display: flex;
   flex-direction: column;
+  align-items: center;
+}
+
+.logo-footer {
+  font-family: 'Orbitron';
+  font-style: normal;
+  font-weight: 900;
+  font-size: 40px;
+  line-height: 60px;
+  padding-bottom: 25px;
 }
 
 .title-link {
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 600;
   padding: 10px 0;
 }
 
 .link-footer {
-  font-size: 15px;
+  font-size: 16px;
   color: #fff;
   text-decoration: none;
   margin: 0px 80px;
+  padding-bottom: 5px;
 }
 
 .social-media img {

@@ -1,10 +1,10 @@
 <template>
     <div class="content">
-        <div class="block" v-if="Authstore.user">
+        <div class="block">
             <div class="profile-block">
                 <div class="title">
                     <div class="icon">
-                        <img src="@/assets/img/player/crosshair.png" alt="icon">
+                        <img src="@/assets/img/player/crosshair.svg" alt="icon">
                         <h3>Прицел</h3>
                     </div>
                     <div class="btn-copy">
@@ -12,8 +12,8 @@
                         <button class="copy" @click="copyToClipboard">Скопировать</button>
                     </div>
                 </div>
-                <div class="crosshair">
-                    <pre ref="preElement">cl_crosshair_drawoutline 0; cl_crosshairalpha 255; cl_crosshaircolor 4; cl_crosshaircolor_b 255; cl_crosshaircolor_g 255; cl_crosshaircolor_r 255; cl_crosshairdot 0; cl_crosshairgap -2; cl_crosshairsize 1.5; cl_crosshairstyle 4; cl_crosshairthickness 0; cl_crosshair_sniper_width 1;</pre>
+                <div class="startupsettings">
+                    <pre ref="preElement">{{ settings.crosshair_code }}</pre>
                 </div>
             </div>
         </div>
@@ -21,9 +21,6 @@
 </template>
 <script setup>
 import { ref } from 'vue';
-import { useAuthStore } from '@/store/auth.js';
-
-const Authstore = useAuthStore();
 const preElement = ref(null);
 
 function copyToClipboard() {
@@ -32,6 +29,13 @@ function copyToClipboard() {
         navigator.clipboard.writeText(textToCopy);
     }
 }
+
+const props = defineProps({
+    settings: {
+        type: Object,
+        required: true
+    }
+})
 </script>
 <style scoped>
 
@@ -48,6 +52,8 @@ function copyToClipboard() {
 .copy {
     border: none;
     background: none;
+    font-size: 16px;
+    font-weight: 600;
     color: #fff;
     padding: 5px 5px;
     font-family: 'Montserrat', sans-serif;
@@ -57,15 +63,16 @@ function copyToClipboard() {
     transform:scale(1.1)
 }
 
-.crosshair {
+.startupsettings {
     display: flex;
     justify-content: center;
     padding-top: 20px
 }
 
 pre {
-    background-color: #181818;
+    background: rgba(43, 43, 43, 0.13);
     width: 90%;
+    height: 40px;
     border-radius: 10px;
     font-size: 14px;
     color: #666666;
@@ -83,14 +90,14 @@ pre {
 }
 
 .block {
-    width: 1100px;
+    width: 1020px;
+    height: 190px;
     display: flex;
 }
 
 .profile-block {
     width: 100%;
     background: #000000;
-    box-shadow: inset 5px 5px 35px rgba(255, 255, 255, 0.4);
     border-radius: 10px 10px 10px 10px;
     padding-bottom: 50px;
 }

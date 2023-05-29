@@ -1,11 +1,13 @@
 <template>
-    <div class="content">
-        <h1 class="title">Игроки</h1>
-        <div class="container">
-            <div v-if="isLoading">
-                <p>LOADING LIST WITH UNIQUE STEAM_ID</p>
+    <div class="section">
+        <div class="content">
+            <h1 class="title">Игроки</h1>
+            <div class="container">
+                <div v-if="isLoading">
+                    <p>LOADING LIST WITH UNIQUE STEAM_ID</p>
+                </div>
+                <PlayerCard v-else v-for="player in playersList" :player="player" :key="player.steam_id" />
             </div>
-            <PlayerCard v-else v-for="player in playersList" :player="player" :key="player.steam_id" />
         </div>
     </div>
 </template>
@@ -45,8 +47,14 @@ onMounted(() => {
 </script>
 
 <style scoped>
+.section {
+    height: 100vh;
+    background: conic-gradient(from -66.6deg at 100% 0%, #414042 0deg, #060515 360deg);
+}
 .content {
-    padding: 60px 120px
+    padding: 60px 0;
+    max-width: 1540px;
+    margin: 0 auto;
 }
 
 .title {
@@ -57,6 +65,7 @@ onMounted(() => {
 .container {
     display: flex;
     flex-wrap: wrap;
-    max-width: 1620px;
+    max-width: 1540px;
+    margin: 0 auto;
 }
 </style>

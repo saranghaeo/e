@@ -111,9 +111,10 @@ tbody:after {
 }
 
 .settings {
+    position: relative;
     display: flex;
     flex-wrap: wrap;
-    padding-left: 70px;
+    padding-left: 40px;
 }
 
 .content {
@@ -125,14 +126,14 @@ tbody:after {
 }
 
 .block {
-    width: 1100px;
+    width: 1020px;
+    height: 220px;
     display: flex;
 }
 
 .profile-block {
     width: 100%;
     background: #000000;
-    box-shadow: inset 5px 5px 35px rgba(255, 255, 255, 0.4);
     border-radius: 10px 10px 10px 10px;
     padding-bottom: 50px;
 }
