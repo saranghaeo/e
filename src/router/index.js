@@ -46,6 +46,11 @@ const router = createRouter({
       component: () => import('../views/Blogs/gsync.vue')
     },
     {
+      path: '/fps',
+      name: 'fps',
+      component: () => import('../views/Blogs/fps.vue')
+    },
+    {
       path: '/training',
       name: 'training',
       component: () => import('../views/TrainingPage.vue')
@@ -59,6 +64,11 @@ const router = createRouter({
       path: '/human',
       name: 'human',
       component: () => import('../views/HumanBench.vue')
+    },
+    {
+      path: '/aim',
+      name: 'aim',
+      component: () => import('../views/AimTest.vue')
     },
   ]
 })

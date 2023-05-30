@@ -1,17 +1,15 @@
 <template>
     <div class="card">
         <div class="image-news">
-            <img src="@/assets/img/news/cs2.jpg" alt="preview">
+            <img src="@/assets/img/news/fps/fps.jpg" alt="preview">
         </div>
         <div class="text-block">
-            <h2 class="title">Counter-Strike 2 Анонсирована Valve</h2>
-            <p class="text">Слухи об этом ходили уже много лет, но недавние слухи оказались верными, поскольку Valve
-                официально анонсировала Counter-Strike 2
-                в своем блоге. Counter-Strike 2 представит ряд масштабных обновлений для игры, а полноценный релиз
-                запланирован на лето, с сегодняшнего дня начинается ограниченное тестирование.
-                CS2 станет бесплатным обновлением для CS:GO и внесет ряд улучшений, некоторые из которых уже были описаны
-                Valve.</p>
-            <router-link to="/cs2" class="more">Узнать Больше</router-link>
+            <h2 class="title">Что такое Частота кадров?</h2>
+            <p class="text">Частота кадров (framerate) - это частота, с которой изображения появляются на экране или дисплее.
+            Современные дисплеи работают путем отображения серии кадров (практически статических изображений) в быстром
+            темпе, вызывая визуальную систему видеть движение. Частота кадров выражается в герцах (Гц) или кадрах в секунду
+            (FPS - Frames Per Second)...</p>
+            <router-link to="/fps" class="more">Узнать Больше</router-link>
         </div>
     </div>
 </template>
@@ -35,7 +33,7 @@ export default {
 
 .image-news img {
     width: 420px;
-    height: 250px;
+    height: 248px;
     object-fit: cover;
     border-radius: 10px 0px 0px 10px;
 }

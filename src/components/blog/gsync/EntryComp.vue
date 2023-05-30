@@ -1,24 +1,29 @@
 <template>
-    <div>
-        <h1 class="title">What is G-Sync?</h1>
+    <div class="content">
+        <h1 class="title">Что такое G-Sync?</h1>
         <p class="publish-data"><b>Опубликована:</b> 11 мая, 2023</p>
         <div class="banner">
             <img src="@/assets/img/news/gsync/gsync.png" class="preview" alt="banner">
         </div>
-        <p class="text">G-Sync is a proprietary adaptive sync technology made by Nvidia. It aims to give gamers a smoother
-            gameplay experience by matching a monitor’s refresh rate with the frame rate that the GPU is pushing out, thus
-            eliminating screen stuttering or tearing. It is currently available on all RTX cards and most GTX graphics cards
-            (GTX 650Ti and newer), though gaming monitors don’t come standard with this technology, as the cost of
-            implementing G-Sync in a monitor raises the price. If you wish to use G-Sync, make sure to double check if your
-            monitor is compatible.
+        <p class="text">G-Sync - это собственная технология адаптивной синхронизации, разработанная компанией Nvidia. Она
+            направлена на то, чтобы предоставить геймерам более плавный игровой опыт путем согласования частоты обновления
+            монитора с частотой кадров, генерируемых графическим процессором (GPU), что позволяет избежать мерцания и
+            разрывов изображения на экране. В настоящее время она доступна на всех видеокартах RTX и большинстве видеокарт
+            GTX (начиная с GTX 650Ti и новее), однако игровые мониторы не поставляются стандартно с этой технологией, так
+            как стоимость внедрения G-Sync в монитор повышает его цену. Если вы хотите использовать G-Sync, убедитесь, что
+            ваш монитор совместим с этой технологией.
             <br><br>
-            G-Sync is not to be confused with V-Sync, which is an option in many games and is not a technology developed by
-            Nvidia.
+            G-Sync не следует путать с V-Sync, которая является опцией во многих играх и не является технологией, разработанной Nvidia.
         </p>
     </div>
 </template>
 <script></script>
 <style scoped>
+.content {
+    background: rgba(0, 0, 0, 0.57);
+    border-radius: 10px 10px 0 0;
+    padding: 0 20px;
+}
 .publish-data {
     padding: 10px 0 30px 0px;
     font-size: 16px;

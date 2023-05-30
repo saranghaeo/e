@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="content">
         <h1 class="title">Counter-Strike 2 Анонсирована Valve</h1>
         <p class="publish-data"><b>Опубликована:</b> 22 марта, 2023</p>
         <div class="banner">
@@ -15,6 +15,11 @@
 </template>
 <script></script>
 <style scoped>
+.content {
+    background: rgba(0, 0, 0, 0.57);
+    border-radius: 10px 10px 0 0;
+    padding: 0 20px;
+}
 .publish-data {
     padding: 10px 0 30px 0px;
     font-size: 16px;

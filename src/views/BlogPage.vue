@@ -4,12 +4,14 @@
         <div class="container">
             <CS2/>
             <gsync/>
+            <fps/>
         </div>
     </div>
 </template>
 <script setup>
 import CS2 from "@/components/blog/cs2/BlogCard.vue"
 import gsync from "@/components/blog/gsync/BlogCard.vue"
+import fps from "@/components/blog/fps/BlogCard.vue"
 </script>
 <style scoped>
 .content {

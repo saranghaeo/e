@@ -4,10 +4,11 @@
             <img src="@/assets/img/news/gsync/gsync.png" alt="preview">
         </div>
         <div class="text-block">
-            <h2 class="title">What is G-Sync?</h2>
-            <p class="text">G-Sync is a proprietary adaptive sync technology made by Nvidia. It aims to give gamers a
-                smoother gameplay experience by matching a monitor’s refresh rate with the frame rate that the GPU is
-                pushing out, thus eliminating screen stuttering or…</p>
+            <h2 class="title">Что такое G-Sync?</h2>
+            <p class="text">G-Sync - это собственная технология адаптивной синхронизации, разработанная компанией Nvidia. Ее
+                цель - обеспечить геймерам более плавный игровой опыт путем согласования частоты обновления монитора с
+                частотой кадров, формируемых графическим процессором (GPU), что позволяет избежать мерцания экрана или
+                разрывов изображения...</p>
             <router-link to="/gsync" class="more">Узнать Больше</router-link>
         </div>
     </div>

@@ -1,5 +1,5 @@
 <template>
-    <p class="time">Reaction Time : {{ score }} ms</p>
+    <p class="time">Время реакции: {{ score }} мс</p>
     <p class="rank">{{ rank }}</p>
 </template>
   
@@ -21,11 +21,11 @@ export default {
     mounted() {
         console.log("this.score", this.score);
         if (this.score < 250) {
-            this.rank = "Giga chad";
-        } else if (this.score <= 300) {
-            this.rank = "Norm";
-        } else if (this.score > 300) {
-            this.rank = "Idi potren'sya";
+            this.rank = "Отлично";
+        } else if (this.score <= 320) {
+            this.rank = "Нормально";
+        } else if (this.score > 320) {
+            this.rank = "Удовлетворительно";
         }
     },
 };
@@ -33,11 +33,13 @@ export default {
   
 <style scoped>
 .rank {
-    font-size: 1.4rem;
+    font-size: 24px;
     color: #0faf87;
     font-weight: bold;
+    padding-top: 10px;
 }
 .time {
-    padding: 0 20px;
+    padding-top: 30px;
+    font-size: 20px;
 }
 </style>

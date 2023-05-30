@@ -1,10 +1,10 @@
 <template>
     <div>
         <div class="block__click" v-if="showBlock" @click="stopTimer">
-            <p>click me</p>
+            <p>Нажмимайте!</p>
         </div>
         <div class="block__ready" v-else @click="resetTimer">
-            <p>ready</p>
+            <p>Готовы?</p>
         </div>
     </div>
 </template>
