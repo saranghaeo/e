@@ -75,11 +75,6 @@ const router = createRouter({
       name: 'human',
       component: () => import('../views/HumanBench.vue')
     },
-    {
-      path: '/aim',
-      name: 'aim',
-      component: () => import('../views/AimTest.vue')
-    },
   ]
 })
 
