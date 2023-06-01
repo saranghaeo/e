@@ -96,6 +96,8 @@
 import { useAuthStore } from '@/store/auth.js';
 
 const Authstore = useAuthStore();
+
+Authstore.loadUserFromLocalStorage();
 </script>
 
 <style>

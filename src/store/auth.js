@@ -9,6 +9,15 @@ export const useAuthStore = defineStore('auth', {
     token: null
   }),
   actions: {
+    loadUserFromLocalStorage() {
+      const user = JSON.parse(localStorage.getItem('user'))
+      const token = localStorage.getItem('token')
+
+      if (user && token) {
+        this.user = user
+        this.token = token
+      }
+    },
     async login() {
       const returnUrl = `${window.location.origin}/players/`
       const loginUrl = `https://steamcommunity.com/openid/login?openid.claimed_id=http://specs.openid.net/auth/2.0/identifier_select&openid.identity=http://specs.openid.net/auth/2.0/identifier_select&openid.mode=checkid_setup&openid.ns=http://specs.openid.net/auth/2.0&openid.realm=${window.location.origin}&openid.return_to=${encodeURIComponent(returnUrl)}`
@@ -59,7 +68,11 @@ export const useAuthStore = defineStore('auth', {
         this.user = user
         this.token = token
 
+        localStorage.setItem('user', JSON.stringify(user))
+        localStorage.setItem('token', token)
+
         await this.saveUserDataToSupabase(user, token)
+
       } catch (error) {
         console.error(error)
       }
