@@ -1,5 +1,8 @@
 {
-    "rewrites": [
-      { "source": "/players/(.*)", "destination": "/players/index.html" }
-    ]
-  }
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}
