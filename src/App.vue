@@ -16,7 +16,8 @@
       <router-link to="/profile">
         <img :src="Authstore.user.avatarfull" :alt="Authstore.user.avatarfull">
       </router-link>
-    
+
+
       <div class="logout_nickname">
         <router-link to="/profile" class="nav-link">
           <h3 class="nickname-auth">{{ Authstore.user.personaname }}</h3>
@@ -32,11 +33,11 @@
 
   </header>
 
-  <router-view v-slot="{ Component }">
-    <transition name="route" mode="out-in">
-      <component :is="Component"></component>
-    </transition>
-  </router-view>
+    <router-view v-slot="{ Component }">
+      <transition name="route" mode="out-in">
+        <component :is="Component"></component>
+      </transition>
+    </router-view>
 
   <footer>
     <div class="content-footer">
@@ -134,6 +135,16 @@ body {
   align-items: center;
   padding: 30px 120px;
   background: #000000;
+}
+
+.route-enter-active,
+.route-leave-active {
+  transition: opacity 0.5s;
+}
+
+.route-enter,
+.route-leave-to {
+  opacity: 0;
 }
 
 .logo {
