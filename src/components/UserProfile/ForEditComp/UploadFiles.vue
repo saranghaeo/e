@@ -12,7 +12,12 @@
     <div class="button">
       <button type="submit" class="btn-save">Сохранить настройки</button>
     </div>
+    <div class="content">
+    <p class="text">* Чтобы изменить настройки мыши, нужно изменить значения "none" внутри кавычек, на нужное вам. Если вы не знаете, какая настройка за что отвечает, то не меняйте значения.</p>
+  </div>
   </form>
+
+  
 </template>
   
 <script setup>
@@ -86,6 +91,14 @@ const saveProfile = async () => {
 </script>
   
 <style scoped>
+.text {
+  margin-top: 142px;
+  max-width: 280px;
+  background-color: #0000007b;
+  padding: 20px;
+  border-radius: 5px;
+  color: #666666;
+}
 .btn-save {
   font-size: 14px;
   color: #fff;

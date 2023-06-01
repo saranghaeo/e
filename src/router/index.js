@@ -61,6 +61,16 @@ const router = createRouter({
       component: () => import('../views/GeneratorPage.vue')
     },
     {
+      path: '/generator/bind',
+      name: 'bind',
+      component: () => import('../views/BindPage.vue')
+    },
+    {
+      path: '/generator/crosshair',
+      name: 'crosshair',
+      component: () => import('../views/CrosshairPage.vue')
+    },
+    {
       path: '/human',
       name: 'human',
       component: () => import('../views/HumanBench.vue')
