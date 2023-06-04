@@ -39,6 +39,32 @@
         </div>
     </div>
 </template>
+<script setup>
+import { ref } from 'vue';
+
+const command = ref('');
+const key = ref('');
+const bind = ref('');
+
+const keys = [
+    // Буквы
+    'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
+    'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
+    '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+    'F1', 'F2', 'F3', 'F4', 'F5', 'F6', 'F7', 'F8', 'F9', 'F10', 'F11', 'F12',
+    'Space', 'Enter', 'Tab', 'Shift', 'Ctrl', 'Alt', 'CapsLock', 'Escape',
+    'Backspace', 'Insert', 'Delete', 'Home', 'End', 'PageUp', 'PageDown',
+    'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight',
+    'Mouse1', 'Mouse2', 'Mouse3', 'Mouse4', 'Mouse5',
+    '`', '-', '=', '[', ']', ';', "'", ',', '.', '/',
+];
+
+function generateBind() {
+    if (key.value && command.value) {
+        bind.value = `bind ${key.value} "${command.value}"`;
+    }
+}
+</script>
 <style scoped>
 .commands {
     padding-left: 5px;
@@ -142,29 +168,3 @@
     outline: none;
 }
 </style>
-<script setup>
-import { ref } from 'vue';
-
-const command = ref('');
-const key = ref('');
-const bind = ref('');
-
-const keys = [
-    // Буквы
-    'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
-    'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
-    '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
-    'F1', 'F2', 'F3', 'F4', 'F5', 'F6', 'F7', 'F8', 'F9', 'F10', 'F11', 'F12',
-    'Space', 'Enter', 'Tab', 'Shift', 'Ctrl', 'Alt', 'CapsLock', 'Escape',
-    'Backspace', 'Insert', 'Delete', 'Home', 'End', 'PageUp', 'PageDown',
-    'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight',
-    'Mouse1', 'Mouse2', 'Mouse3', 'Mouse4', 'Mouse5',
-    '`', '-', '=', '[', ']', ';', "'", ',', '.', '/',
-];
-
-function generateBind() {
-    if (key.value && command.value) {
-        bind.value = `bind ${key.value} "${command.value}"`;
-    }
-}
-</script>
