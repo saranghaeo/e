@@ -120,6 +120,10 @@ Authstore.loadUserFromLocalStorage();
   color: white;
 }
 
+body::-webkit-scrollbar {
+  width: 0px;               /* ширина scrollbar */
+}
+
 body {
   background: conic-gradient(from -66.6deg at 100% 0%, #414042 0deg, #060515 360deg);
   margin: 0;
