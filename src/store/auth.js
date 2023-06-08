@@ -81,6 +81,8 @@ export const useAuthStore = defineStore('auth', {
     logout() {
       this.user = null
       this.token = null
+      localStorage.removeItem('user')
+      localStorage.removeItem('token')
     },
 
     async saveUserDataToSupabase(user, token) {
