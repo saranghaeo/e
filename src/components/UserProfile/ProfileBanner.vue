@@ -21,18 +21,22 @@
 
       <div class="block-right">
 
-        <div class="cfg-block">
+        <div class="cfg-block" v-if="folderExists">
           <img src="@/assets/img/player/cfg.svg" alt="logo">
-          <a :href="linkCfg" class="cfg">
+          <a :href="getDownloadUrl('config.cfg')" class="cfg">
             <p class="sup-cfg">Config.cfg</p>
           </a>
         </div>
 
-        <div class="cfg-block">
+        <div class="cfg-block" v-if="folderExists">
           <img src="@/assets/img/player/txt.svg" alt="logo">
-          <a :href="linkVideo" class="cfg">
+          <a :href="getDownloadUrl('video.txt')" class="cfg">
             <p class="sup-cfg">Video.txt</p>
           </a>
+        </div>
+
+        <div v-if="!folderExists" class="file-text">
+          <p>Файлы ещё не были добавлены пользователем</p>
         </div>
 
       </div>
@@ -43,32 +47,43 @@
 </template>
 <script setup>
 import { ref, onMounted } from 'vue'
-import { useAuthStore } from '@/store/auth.js'
 import { supabase } from '@/supabase.js';
-const store = useAuthStore()
+import { useRoute } from 'vue-router'
 
-const linkCfg = ref()
-const linkVideo = ref()
+const folderExists = ref(false)
+const cfgFileExists = ref(false)
+const videoFileExists = ref(false)
 
 onMounted(async () => {
-  const steamid = store.user.steamid
-  const getFilePublicUrl = async (fileName, linkValue) => {
+
+  const steam_id = useRoute().params.steam_id
+
+  const checkFolderExists = async () => {
     const { data, error } = await supabase.storage
       .from('profile-files')
-      .getPublicUrl(`${steamid}/${fileName}`, {
-        download: true,
-      })
-    if (error) {
-      console.error(error)
-    } else {
-      linkValue.value = data.publicUrl
-    }
+      .list(`${steam_id}`)
+    return !error && data.length > 0
   }
-  await Promise.all([
-    getFilePublicUrl('config.cfg', linkCfg),
-    getFilePublicUrl('video.txt', linkVideo),
-  ])
+
+  const checkFileExists = async (fileName) => {
+    const { data, error } = await supabase.storage
+      .from('profile-files')
+      .list(`${steam_id}/${fileName}`, { limit: 1 })
+    return !error && data.length > 0
+  }
+
+  folderExists.value = await checkFolderExists()
+  cfgFileExists.value = await checkFileExists('config.cfg')
+  videoFileExists.value = await checkFileExists('video.txt')
 })
+
+const getDownloadUrl = (fileName) => {
+  if (folderExists.value) {
+    return `https://eqtgcskjmwukbdbzmzgf.supabase.co/storage/v1/object/public/profile-files/${useRoute().params.steam_id}/${fileName}?download=`
+  } else {
+    return null
+  }
+}
 
 const props = defineProps({
   player: {
@@ -78,6 +93,7 @@ const props = defineProps({
 })
 
 </script>
+
 <style scoped>
 .content {
   width: 1020px;
@@ -152,6 +168,7 @@ pre {
   justify-content: center;
   width: 100%;
 }
+
 .cfg-block {
   display: flex;
   align-items: center;
@@ -178,5 +195,10 @@ pre {
 
 .sup-cfg {
   width: 100px;
+}
+
+.file-text {
+  width: 80%;
+  text-align: center;
 }
 </style>
