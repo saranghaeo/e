@@ -45,7 +45,7 @@ const loadUser = async () => {
     if (settingsId) {
       const { data: settingsDataResult, error: settingsError } = await supabase
         .from('settings')
-        .select('id, launch_option, mouse_settings')
+        .select('id, launch_option, mouse_settings, crosshair_code')
         .eq('id', settingsId)
 
       if (settingsError) {

@@ -1,6 +1,6 @@
 <template>
   <div class="content" v-if="Authstore.user">
-    <h1 class="title">Edit Profile</h1>
+    <h1 class="title">Редактирование профиля</h1>
     <Edit />
   </div>
   <div v-else class="warning">

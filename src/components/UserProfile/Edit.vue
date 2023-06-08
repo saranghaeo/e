@@ -7,8 +7,13 @@
       <textarea v-model="about" class="field-text"></textarea>
       <label class="name">Параметры запуска:</label>
       <input v-model="launchOption" type="text" class="field">
+      <label class="name">Код прицела:</label>
+      <input v-model="crosshairCode" type="text" class="field">
       <label class="name">Настройки мыши:</label>
-      <textarea v-model="mouseSettings" class="field-json"></textarea>
+      <div v-for="setting in mouseSettings" :key="setting.key" class="json-container">
+        <label class="sub-name">{{ setting.label }}</label>
+        <input v-model.number="setting.value" :type="setting.type" class="json-input" :placeholder="setting.placeholder" :step="setting.step">
+      </div>
       <div class="button">
         <button type="submit" class="btn-save">Сохранить профиль</button>
       </div>
@@ -29,7 +34,16 @@ const Authstore = useAuthStore()
 const about = ref('')
 const team = ref('')
 const launchOption = ref('')
-const mouseSettings = ref('')
+const crosshairCode = ref('')
+const mouseSettings = ref([
+  { key: 'DPI', label: 'DPI', value: '', type: 'number', placeholder: 'например 400, 800 ...', step: 50 },
+  { key: 'Sensitivity', label: 'Чувствительность', value: '', type: 'number', placeholder: 'например 1, 2.5 ...', step: 0.1 },
+  { key: 'Zoom Sensitivity', label: 'Чувствительность в прицеле', value: '', type: 'number', placeholder: 'например 1, 1.1 ...', step: 0.1 },
+  { key: 'Hz', label: 'Hz', value: '', type: 'number', placeholder: 'например 500, 1000 ...', step: 100 },
+  { key: 'Windows Sensitivity', label: 'Чувствительность в Windows', value: '', type: 'text', placeholder: 'например 6/11, 7/11 ...' },
+  { key: 'Raw Input', label: 'Прямой ввод мыши', value: '', type: 'number', placeholder: 'введите 0 или 1', min: 0, max: 1, step: 1 },
+  { key: 'Mouse Acceleration', label: 'Акселерация', value: '', type: 'number', placeholder: 'введите 0 или 1', min: 0, max: 1, step: 1 },
+])
 
 onMounted(async () => {
   const suid = Authstore.token
@@ -50,14 +64,18 @@ onMounted(async () => {
 
   const { data: settingsData, error: settingsError } = await supabase
     .from('settings')
-    .select('launch_option, mouse_settings')
+    .select('launch_option, mouse_settings, crosshair_code')
     .eq('id', settingsId)
 
   if (settingsError) {
     console.error(settingsError)
   } else {
     launchOption.value = settingsData[0].launch_option
-    mouseSettings.value = JSON.stringify(settingsData[0].mouse_settings, null, 2)
+    crosshairCode.value = settingsData[0].crosshair_code
+    const parsedMouseSettings = settingsData[0].mouse_settings
+    mouseSettings.value.forEach((setting) => {
+      setting.value = parsedMouseSettings[setting.key]
+    })
   }
 })
 
@@ -85,11 +103,18 @@ const saveProfile = async () => {
     console.error(userUpdateError);
   }
 
+  const updatedMouseSettings = {}
+  mouseSettings.value.forEach((setting) => {
+    updatedMouseSettings[setting.key] = setting.value
+  })
+
+
   const { error: settingsUpdateError } = await supabase
     .from('settings')
     .update({
       launch_option: launchOption.value,
-      mouse_settings: JSON.parse(mouseSettings.value)
+      crosshair_code: crosshairCode.value,
+      mouse_settings: updatedMouseSettings
     })
     .eq('id', settingsId)
 
@@ -119,7 +144,30 @@ const saveProfile = async () => {
   padding-bottom: 5px;
 }
 
+.sub-name {
+  font-size: 15px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+}
+
 .field {
+  background-color: #0000007b;
+  height: 30px;
+  border-radius: 5px;
+  font-size: 16px;
+  color: #666666;
+  padding: 12px 15px;
+  font-family: 'Montserrat', sans-serif;
+  white-space: break-spaces;
+  display: block;
+  margin: 0;
+  border: none;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.json-input {
   background-color: #0000007b;
   height: 30px;
   border-radius: 5px;
@@ -139,7 +187,13 @@ const saveProfile = async () => {
   color: #fff;
 }
 
-.field-json:focus {
+.json-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.json-input:focus {
   color: #fff;
 }
 
@@ -160,21 +214,6 @@ const saveProfile = async () => {
 
 .field-text:focus {
   color: #fff;
-}
-
-.field-json {
-  background-color: #0000007b;
-  width: 450px;
-  height: 200px;
-  border-radius: 5px;
-  font-size: 16px;
-  color: #666666;
-  padding: 12px 15px;
-  font-family: 'Montserrat', sans-serif;
-  white-space: break-spaces;
-  margin-top: 5px;
-  margin-bottom: 5px;
-  resize: none;
 }
 
 .btn-save {
