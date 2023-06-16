@@ -11,6 +11,7 @@
       "source": "/login-callback",
       "destination": "/src/store/auth.js"
     },
+    
     {
       "source": "/(.*)",
       "destination": "/index.html"
