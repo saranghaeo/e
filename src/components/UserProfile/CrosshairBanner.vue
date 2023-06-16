@@ -10,8 +10,10 @@
                     <div class="btn-copy">
                         <img src="@/assets/img/player/copy.png" alt="copy">
                         <button class="copy" @click="copyToClipboard">Скопировать</button>
+                        
                     </div>
                 </div>
+                <div v-if="notification" class="notification">{{ notification }}</div>
                 <div class="startupsettings">
                     <pre ref="preElement">{{ settings.crosshair_code }}</pre>
                 </div>
@@ -22,12 +24,24 @@
 <script setup>
 import { ref } from 'vue';
 const preElement = ref(null);
+const notification = ref(null);
 
 function copyToClipboard() {
     if (preElement.value) {
         const textToCopy = preElement.value.innerText;
-        navigator.clipboard.writeText(textToCopy);
+        navigator.clipboard.writeText(textToCopy).then(() => {
+            showNotification('Успешно скопировано!');
+        }).catch(() => {
+            showNotification('Не удалось скопировать.');
+        });
     }
+}
+
+function showNotification(message) {
+    notification.value = message;
+    setTimeout(() => {
+        notification.value = null;
+    }, 2000);
 }
 
 const props = defineProps({
@@ -38,7 +52,14 @@ const props = defineProps({
 })
 </script>
 <style scoped>
-
+.notification {
+    position: absolute;
+    font-size: 20px;
+    padding: 10px 15px;
+    border-radius: 10px;
+    right: 420px;
+    background-color: #000000a1;
+}
 .btn-copy {
     display: flex;
     align-items: center;

@@ -11,7 +11,7 @@
             </router-link>
         </div>
 
-        <div class="card">
+        <div class="card" v-if="qqq">
             <h2 class="title">Crosshair</h2>
 
             <p class="text">Генератор прицела</p>
