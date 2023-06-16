@@ -43,7 +43,7 @@ export const useAuthStore = defineStore('auth', {
       const token = uuidv4()
 
       try {
-        await axios.get("/api/steam/openid/login", {
+        await axios.get("https://steamcommunity.com/openid/login", {
           params: {
             'openid.ns': decodeURIComponent(ns),
             'openid.mode': mode,
