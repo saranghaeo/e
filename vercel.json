@@ -1,20 +1,15 @@
 {
   "rewrites": [
     {
-      "source": "/api/steam/:path*",
-      "destination": "https://api.steampowered.com/:path*",
-      "headers": {
-        "host": "api.steampowered.com"
-      }
-    },
-    {
-      "source": "/login-callback",
-      "destination": "/src/store/auth.js"
-    },
-    
-    {
       "source": "/(.*)",
       "destination": "/index.html"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/steam",
+      "dest": "https://steamcommunity.com",
+      "methods": ["GET"]
     }
   ]
 }
