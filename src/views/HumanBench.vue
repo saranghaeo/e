@@ -11,7 +11,7 @@
       </div>
     </div>
     <div class="text-about">
-      <p class="about">О тесте
+      <p class="about">О тесте <br><br>
         Это простой инструмент для измерения времени вашей реакции.<br><br>
 
         Согласно собранным на данный момент данным, среднее время реакции составляет 273 миллисекунды.<br><br>
@@ -56,9 +56,6 @@ export default {
 }
 </script>
 <style scoped>
-.section {
-  height: 70vh;
-}
 
 .content {
   padding: 60px 0;
@@ -113,5 +110,6 @@ export default {
   padding: 30px;
   border-radius: 20px;
   background: rgba(0, 0, 0, 0.57);
+  margin-bottom: 30px;
 }
 </style>

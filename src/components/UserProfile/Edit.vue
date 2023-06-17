@@ -37,8 +37,8 @@ const launchOption = ref('')
 const crosshairCode = ref('')
 const mouseSettings = ref([
   { key: 'DPI', label: 'DPI', value: '', type: 'number', placeholder: 'например 400, 800 ...', step: 50 },
-  { key: 'Sensitivity', label: 'Чувствительность', value: '', type: 'number', placeholder: 'например 1, 2.5 ...', step: 0.1 },
-  { key: 'Zoom Sensitivity', label: 'Чувствительность в прицеле', value: '', type: 'number', placeholder: 'например 1, 1.1 ...', step: 0.1 },
+  { key: 'Sensitivity', label: 'Чувствительность', value: '', type: 'number', placeholder: 'например 1, 2.5 ...', min: 0, step: 0.01 },
+  { key: 'Zoom Sensitivity', label: 'Чувствительность в прицеле', value: '', type: 'number', placeholder: 'например 1, 1.1 ...', min: 0, step: 0.01 },
   { key: 'Hz', label: 'Hz', value: '', type: 'number', placeholder: 'например 500, 1000 ...', step: 100 },
   { key: 'Windows Sensitivity', label: 'Чувствительность в Windows', value: '', type: 'text', placeholder: 'например 6/11, 7/11 ...' },
   { key: 'Raw Input', label: 'Прямой ввод мыши', value: '', type: 'number', placeholder: 'введите 0 или 1', min: 0, max: 1, step: 1 },

@@ -9,6 +9,8 @@
       <label class="sup-name">Video.txt:</label>
       <input type="file" @change="handleVideoFileChange" accept=".txt" class="field-file">
     </label>
+    <p class="sup-text">Перейдите по пути: C:\Program Files (x86)\Steam\userdata\code\730\local\cfg, где code - ваш код дружбы (steam/настройки и в центре будет ваш код), после выбираем config, затем video.</p>
+
     <div class="button">
       <button type="submit" class="btn-save">Сохранить настройки</button>
     </div>
@@ -88,6 +90,14 @@ const saveProfile = async () => {
 </script>
   
 <style scoped>
+.sup-text {
+  margin-top: 15px;
+  max-width: 45%;
+  background-color: #0000007b;
+  padding: 10px 20px;
+  border-radius: 5px;
+  color: #666666;
+}
 .text {
   margin-top: 142px;
   max-width: 280px;
