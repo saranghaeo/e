@@ -75,6 +75,11 @@ const router = createRouter({
       name: 'human',
       component: () => import('../views/HumanBench.vue')
     },
+    {
+      path: '/help',
+      name: 'help',
+      component: () => import('../views/HelpPage.vue')
+    },
   ]
 })
 

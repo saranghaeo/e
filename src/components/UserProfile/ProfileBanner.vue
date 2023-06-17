@@ -34,7 +34,7 @@
             <p class="sup-cfg">Video.txt</p>
           </a>
         </div>
-
+        <router-link to="/help" class="help" v-show="folderExists">Как установить конфиги?</router-link>
         <div v-if="!folderExists" class="file-text">
           <p>Файлы ещё не были добавлены пользователем</p>
         </div>
@@ -95,6 +95,15 @@ const props = defineProps({
 </script>
 
 <style scoped>
+.help {
+  text-align: center;
+  font-size: 14px;
+  color: #666666;
+  transition: 0.3s;
+}
+.help:hover {
+  color: #fff;
+}
 .content {
   width: 1020px;
   height: 220px;
