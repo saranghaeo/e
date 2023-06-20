@@ -48,7 +48,6 @@ onMounted(() => {
 
 <style scoped>
 .section {
-    height: 100vh;
     background: conic-gradient(from -66.6deg at 100% 0%, #414042 0deg, #060515 360deg);
 }
 .content {
