@@ -4,7 +4,7 @@
         <div class="card">
             <h2 class="title">ReactionTimer</h2>
 
-            <p class="text">Тренировка и проверка реакиаци</p>
+            <p class="text">Тренировка и проверка реакции</p>
 
             <router-link to="/human" class="btn">
                 <p class="btn-text">Запустить</p>
